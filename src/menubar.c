@@ -363,7 +363,7 @@ static void file_select_cb(GtkWidget *widget, gpointer data)
                                               _("_Open"), GTK_RESPONSE_ACCEPT,
                                               NULL);
          gtk_file_chooser_set_filename(GTK_FILE_CHOOSER(dialog),
-                                       gtk_entry_get_text(GTK_ENTRY(Closure->imageEntry)));
+                                       gtk_entry_get_text(GTK_ENTRY(Closure->eccEntry)));
          if (gtk_dialog_run (GTK_DIALOG (dialog)) == GTK_RESPONSE_ACCEPT)
          {  g_free(Closure->imageName);
             Closure->eccName = gtk_file_chooser_get_filename (GTK_FILE_CHOOSER (dialog));
