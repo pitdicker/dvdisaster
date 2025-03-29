@@ -439,10 +439,6 @@ void GuiCreateMainWindow(int *argc, char ***argv)
 
     g_signal_connect(window, "destroy", G_CALLBACK(destroy_cb), NULL);
 
-    /*** Initialize the tooltips struct */
-
-    Closure->tooltips = gtk_tooltips_new();
-
     /*** Create the sub parts of the GUI */
 
     outer_box = gtk_vbox_new(FALSE, 0);
