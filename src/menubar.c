@@ -291,7 +291,7 @@ void GuiAttachTooltip(GtkWidget *widget, char *short_descr, char *long_descr)
    g_signal_connect(G_OBJECT(widget), "enter_notify_event", G_CALLBACK(tooltip_cb), (gpointer)long_copy);
    g_signal_connect(G_OBJECT(widget), "leave_notify_event", G_CALLBACK(tooltip_cb), (gpointer)long_copy);
 
-   gtk_tooltips_set_tip(Closure->tooltips, widget, short_copy, long_copy);
+   gtk_widget_set_tooltip_text(widget, short_copy);
 
    g_free(short_copy);
    FORGET(long_copy);     /* long_copy must be kept during programs life */
