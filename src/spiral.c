@@ -53,6 +53,7 @@ Spiral* GuiCreateSpiral(GdkColor *outline, GdkColor *fill,
    spiral->segmentColor = g_malloc(n_segments * sizeof(GdkColor*));
    spiral->outline      = outline;
    spiral->cursorPos    = -1;
+   spiral->lastRenderedCursorPos = -1;
 
    for(i=0; i<n_segments; i++)
    { 
@@ -139,7 +140,10 @@ void GuiDrawSpiral(Spiral *spiral)
       points[2].x = xo1; points[2].y = yo1;
       points[3].x = xi1; points[3].y = yi1;
 
-      gdk_gc_set_rgb_fg_color(Closure->drawGC, spiral->segmentColor[i]);
+      if (i == spiral->cursorPos)
+         gdk_gc_set_rgb_fg_color(Closure->drawGC, Closure->blueSector);
+      else
+         gdk_gc_set_rgb_fg_color(Closure->drawGC, spiral->segmentColor[i]);
       gdk_draw_polygon(d, Closure->drawGC, TRUE, points, 4);
       gdk_gc_set_rgb_fg_color(Closure->drawGC, spiral->outline);
       gdk_draw_polygon(d, Closure->drawGC, FALSE, points, 4);
@@ -154,41 +158,11 @@ void GuiDrawSpiral(Spiral *spiral)
  */
 
 void GuiDrawSpiralSegment(Spiral *spiral, GdkColor *color, int segment)
-{  GdkDrawable *d = gtk_widget_get_window(spiral->widget);
-   double a;
-   double scale_i,scale_o,ring_expand;
-   GdkPoint points[4];
-
-   if(segment<0 || segment>=spiral->segmentClipping)
-     return;
-
-   a = spiral->segmentPos[segment];
-
-   ring_expand = ((double)spiral->segmentSize * a) / (2.0*M_PI);
-
-   scale_i = (double)spiral->startRadius + ring_expand;
-   scale_o = scale_i + spiral->segmentSize;
-   points[0].x = spiral->mx + scale_i*cos(a);
-   points[0].y = spiral->my + scale_i*sin(a);
-   points[1].x = spiral->mx + scale_o*cos(a);
-   points[1].y = spiral->my + scale_o*sin(a);
-
-   a += atan((double)spiral->segmentSize / scale_o);
-
-   ring_expand = ((double)spiral->segmentSize * a) / (2.0*M_PI);
-
-   scale_i = (double)spiral->startRadius + ring_expand;
-   scale_o = scale_i + spiral->segmentSize;
-   points[3].x = spiral->mx + scale_i*cos(a);
-   points[3].y = spiral->my + scale_i*sin(a);
-   points[2].x = spiral->mx + scale_o*cos(a);
-   points[2].y = spiral->my + scale_o*sin(a);
-
-   spiral->segmentColor[segment] = color;
-   gdk_gc_set_rgb_fg_color(Closure->drawGC, color);
-   gdk_draw_polygon(d, Closure->drawGC, TRUE, points, 4);
-   gdk_gc_set_rgb_fg_color(Closure->drawGC, spiral->outline);
-   gdk_draw_polygon(d, Closure->drawGC, FALSE, points, 4);
+{
+   if (spiral->segmentColor[segment] != color)
+   {  spiral->segmentColor[segment] = color;
+      gtk_widget_queue_draw(spiral->widget);
+   }
 }
 
 /*
@@ -227,58 +201,37 @@ void GuiMoveSpiralCursor(Spiral *spiral, int to_segment)
   if(to_segment > spiral->segmentClipping)
     return;
 
-  /* Erase old cursor */
-
-  if(spiral->cursorPos >= 0)
-    GuiDrawSpiralSegment(spiral, spiral->colorUnderCursor, spiral->cursorPos);
-
-  /* Moving to -1 means cursor off */
-
   spiral->cursorPos = to_segment;
-
-  if(to_segment < 0)
-    return;
 
   if(to_segment > spiral->segmentCount-1)
   {  spiral->cursorPos = -1;
      return;
   }
 
-  /* Draw cursor at new place */
-
-  spiral->colorUnderCursor = spiral->segmentColor[to_segment];
-  GuiDrawSpiralSegment(spiral, Closure->blueSector, to_segment);
+  gtk_widget_queue_draw(spiral->widget);
 }
 
 /*
  * Wrapper for moving the spiral cursor from non-GUI thread
  */
 
-typedef struct _cursor_info
-{  Spiral *spiral;
-   int segment;
-} cursor_info;
-
 static gboolean cursor_idle_func(gpointer data)
-{  cursor_info *ci = (cursor_info*)data;
+{  Spiral *spiral = (Spiral*)data;
 
-   GuiMoveSpiralCursor(ci->spiral, ci->segment);
-   g_free(ci);
+   gint cursorPos = g_atomic_int_get(&spiral->cursorPos);
+   if (spiral->lastRenderedCursorPos != cursorPos) {
+      spiral->lastRenderedCursorPos = cursorPos;
+      gtk_widget_queue_draw(spiral->widget);
+   }
 
    return FALSE;
 }
-
 void GuiChangeSpiralCursor(Spiral *spiral, int segment)
 {
    if(!Closure->guiMode)
      return;
-  
-   if(segment != spiral->cursorPos)
-   {  cursor_info *ci = g_malloc(sizeof(cursor_info));
 
-      ci->spiral  = spiral;
-      ci->segment = segment;
-      g_idle_add(cursor_idle_func, ci);
-   }
+   g_atomic_int_set(&spiral->cursorPos, segment);
+   g_idle_add(cursor_idle_func, spiral);
 }
 #endif /* WITH_GUI_YES */
