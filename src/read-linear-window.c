@@ -260,8 +260,6 @@ void GuiMarkExistingSectors(void)
    x = Closure->readLinearCurve->rightX + 20;
    
    Closure->additionalSpiralColor = 3;
-   GuiDrawSpiralLabel(Closure->readLinearSpiral, Closure->readLinearCurve->layout,
-		      _("Already present"), Closure->darkSector, x, -1);
 
    for(i=0; i<1000; i++)
       if(Closure->readLinearSpiral->segmentColor[i] == Closure->greenSector)

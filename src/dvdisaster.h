@@ -1533,7 +1533,7 @@ typedef struct _Spiral
    int diameter;
    int segmentClipping;
    int cursorPos;
-   GdkColor *colorUnderCursor;
+   gint lastRenderedCursorPos; /* use with atomic operations */
 } Spiral;
 
 #ifdef WITH_GUI_YES
