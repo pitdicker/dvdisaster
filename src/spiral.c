@@ -164,7 +164,7 @@ void GuiDrawSpiral(Spiral *spiral)
  * Draw just one segment of the spiral
  */
 
-void GuiDrawSpiralSegment(Spiral *spiral, GdkColor *color, GdkColor *outline, int segment)
+void GuiSetSpiralSegmentColor(Spiral *spiral, GdkColor *color, GdkColor *outline, int segment)
 {
    if(segment<0 || segment>=spiral->segmentClipping)
      return;
