@@ -217,31 +217,20 @@ void GuiClipReadAdaptiveSpiral(int segments)
 
 /*
  * Change the segment color.
- * Segment numbers are passed with an offset of 100,
- * since another routine is occasionally doing an
- * g_idle_remove_by_data(GINT_TO_POINTER(REDRAW_PROGRESS)),
- * with REDRAW_PROGRESS being 4 which would make segment 4 fail to redraw.
- * One of the many places where the Gtk+ API is not well thought out.
+ * We can't ask for a redraw when not an the main thread, but can set an idle
+ * function to do so.
  */
 
 static gboolean segment_idle_func(gpointer data)
-{  int segment = GPOINTER_TO_INT(data);
-  
-   segment-=100;
-   GuiDrawSpiralSegment(Closure->readAdaptiveSpiral,
-			Closure->readAdaptiveSpiral->segmentColor[segment],
-			0,
-			segment);
-
+{
+   GuiDrawSpiral(Closure->readAdaptiveSpiral);
    return FALSE;
 }
 
 void GuiChangeSegmentColor(GdkColor *color, int segment)
 {  
    Closure->readAdaptiveSpiral->segmentColor[segment] = color;
-   if(Closure->readAdaptiveSpiral->cursorPos == segment)
-        Closure->readAdaptiveSpiral->colorUnderCursor = color;
-   else g_idle_add(segment_idle_func, GINT_TO_POINTER(100+segment));
+   g_idle_add(segment_idle_func, 0);
 }
 
 /*
