@@ -70,7 +70,6 @@ void GuiInitializeCurve(void *rc_ptr, int max_rate, int can_c2)
 
    rc->lastCopied = (1000*rc->firstSector)/rc->image->dh->sectors;
    rc->lastPlotted = rc->lastSegment = rc->lastCopied;
-   rc->lastPlottedY = 0;
 
    if(Closure->readLinearSpiral)
      for(i=rc->lastCopied-1; i>=0; i--)
@@ -92,10 +91,8 @@ typedef struct
 static gboolean curve_idle_func(gpointer data)
 {  curve_info *ci = (curve_info*)data;
    read_closure *rc=ci->rc;
-   gint x0,y0;
    char *utf,buf[80];
    gint i;
-   gint resize_curve = FALSE;
 
    /*** Update the textual output */
 
@@ -125,7 +122,9 @@ static gboolean curve_idle_func(gpointer data)
 
    rc->lastSegment = ci->percent;
 
-   if(rc->pass)      /* 2nd or higher reading pass, don't touch the curve */
+   /* Don't touch the curve if 2nd or higher reading pass, of if there is no new data */
+
+   if(rc->pass || rc->lastPlotted >= ci->percent)
    {  g_free(ci);
       g_mutex_lock(rc->rendererMutex);
       rc->activeRenderers--;
@@ -137,53 +136,12 @@ static gboolean curve_idle_func(gpointer data)
 
    for(i=rc->lastPlotted+1; i<=ci->percent; i++)
      if(Closure->readLinearCurve->fvalue[i] > Closure->readLinearCurve->maxY)
-       resize_curve = TRUE;
+        Closure->readLinearCurve->maxY = Closure->readLinearCurve->fvalue[i];
 
-   if(resize_curve)
-   {  Closure->readLinearCurve->maxY = Closure->readLinearCurve->fvalue[ci->percent] + 1;
+   /*** Schedule the curve for redrawing */
 
-      update_geometry();
-      gdk_window_clear(gtk_widget_get_window(Closure->readLinearCurveArea));
-      redraw_curve();
-      rc->lastPlotted = ci->percent;
-      rc->lastPlottedY = GuiCurveY(Closure->readLinearCurve, Closure->readLinearCurve->fvalue[ci->percent]); 
-      g_free(ci);
-      g_mutex_lock(rc->rendererMutex);
-      rc->activeRenderers--;
-      g_mutex_unlock(rc->rendererMutex);
-      return FALSE;
-   }
-
-   /*** Draw the changed curve part */
-   
-   x0 = GuiCurveX(Closure->readLinearCurve, rc->lastPlotted);
-   y0 = GuiCurveY(Closure->readLinearCurve, Closure->readLinearCurve->fvalue[rc->lastPlotted]);
-   if(rc->lastPlottedY) y0 = rc->lastPlottedY;
-
-   for(i=rc->lastPlotted+1; i<=ci->percent; i++)
-   {  gint x1 = GuiCurveX(Closure->readLinearCurve, i);
-      gint y1 = GuiCurveY(Closure->readLinearCurve, Closure->readLinearCurve->fvalue[i]);
-      gint l1 = GuiCurveLogY(Closure->readLinearCurve, Closure->readLinearCurve->lvalue[i]);
-
-      if(Closure->readLinearCurve->lvalue[i])
-      {  gdk_gc_set_rgb_fg_color(Closure->drawGC, Closure->logColor);
-      
-	 gdk_draw_rectangle(Closure->readLinearCurveArea->window,
-			    Closure->drawGC, TRUE,
-			    x0, l1,
-			    x0==x1 ? 1 : x1-x0, Closure->readLinearCurve->bottomLY-l1);
-      }
-      if(x0<x1)
-      {  gdk_gc_set_rgb_fg_color(Closure->drawGC, Closure->curveColor);
-	 gdk_draw_line(Closure->readLinearCurveArea->window,
-		      Closure->drawGC,
-		      x0, y0, x1, y1);
-
-	 rc->lastPlotted = ci->percent;
-	 x0 = x1;
-	 rc->lastPlottedY = y0 = y1;
-      }
-   }
+   rc->lastPlotted = ci->percent;
+   gtk_widget_queue_draw(Closure->readLinearCurveArea);
 
    g_free(ci);
    g_mutex_lock(rc->rendererMutex);
