@@ -47,9 +47,7 @@ static void update_geometry(void);
 
 static gboolean max_speed_idle_func(gpointer data)
 {  
-   gdk_window_clear(gtk_widget_get_window(Closure->readLinearCurveArea));
-   update_geometry();
-   redraw_curve();
+   gtk_widget_queue_draw(Closure->readLinearCurveArea);
 
    return FALSE;
 }
@@ -203,7 +201,7 @@ void GuiAddCurveValues(void *rc_ptr, int percent, int color, int c2)
 
 static gboolean curve_mark_idle_func(gpointer data)
 {
-   GuiDrawSpiral(Closure->readLinearSpiral);
+   gtk_widget_queue_draw(Closure->readLinearSpiral->widget);
 
    return FALSE;
 }
@@ -328,29 +326,20 @@ void GuiResetLinearReadWindow()
 
    GuiZeroCurve(Closure->readLinearCurve);
    GuiFillSpiral(Closure->readLinearSpiral, Closure->background);
-   GuiDrawSpiral(Closure->readLinearSpiral);
+   if (Closure->readLinearSpiral->widget)
+      gtk_widget_queue_draw(Closure->readLinearSpiral->widget);
 }
 
 /*
- * Re-layout and redraw the read window while it is in use.
+ * Re-layout and redraw the curve drawing area while it is in use.
  * Required to add the information that CRC data is available,
  * since this happens when the the initial rendering of the window
  * contents have already been carried out.
  */
 
 static gboolean redraw_idle_func(gpointer data)
-{  GdkRectangle rect;
-   GdkWindow *window;
-   gint ignore;
-
-   /* Trigger an expose event for the drawing area. */
-
-   window = gtk_widget_get_parent_window(Closure->readLinearCurveArea);
-   if(window) 
-   {  gdk_window_get_geometry(window, &rect.x, &rect.y, &rect.width, &rect.height, &ignore);
-
-      gdk_window_invalidate_rect(window, &rect, TRUE); 
-   }
+{
+   gtk_widget_queue_draw(Closure->readLinearCurveArea);
 
    return FALSE;
 }
