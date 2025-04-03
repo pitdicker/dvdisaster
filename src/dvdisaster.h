@@ -393,7 +393,7 @@ typedef struct _GlobalClosure
 
    /*** Common stuff for drawing curves and spirals */
 
-   GdkGC     *drawGC;
+   gboolean  colors_initialized;
    GdkColor  *background,*foreground,*grid;
    GdkColor  *redText;
    char      *redMarkup;
