@@ -59,7 +59,8 @@ void ResetRS02VerifyWindow(Method *self)
    wl->lastPercent = 0;
 
    GuiFillSpiral(wl->cmpSpiral, Closure->background);
-   GuiDrawSpiral(wl->cmpSpiral);
+   if (wl->cmpSpiral->widget)
+      gtk_widget_queue_draw(wl->cmpSpiral->widget);
 }
 
 /***
