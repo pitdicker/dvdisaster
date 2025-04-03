@@ -150,11 +150,6 @@ static void redraw_labels(GtkWidget *widget, int erase_mask)
    }
 }
 
-static void redraw_spiral(GtkWidget *widget)
-{
-   GuiDrawSpiral(Closure->readAdaptiveSpiral);
-}
-
 /* Calculate the geometry of the spiral */
 
 static void update_geometry(GtkWidget *widget)
@@ -176,7 +171,7 @@ static gboolean expose_cb(GtkWidget *widget, GdkEventExpose *event, gpointer dat
 
    update_geometry(widget);
    redraw_labels(widget, ~0);
-   redraw_spiral(widget);
+   GuiDrawSpiral(Closure->readAdaptiveSpiral);
 
    return TRUE;
 }
@@ -223,7 +218,7 @@ void GuiClipReadAdaptiveSpiral(int segments)
 
 static gboolean segment_idle_func(gpointer data)
 {
-   GuiDrawSpiral(Closure->readAdaptiveSpiral);
+   gtk_widget_queue_draw(Closure->readAdaptiveDrawingArea);
    return FALSE;
 }
 
@@ -258,9 +253,8 @@ void GuiRemoveFillMarkers()
  ***/
 
 static gboolean label_redraw_idle_func(gpointer data)
-{  int erase_mask = GPOINTER_TO_INT(data);
-
-   redraw_labels(Closure->readAdaptiveDrawingArea, erase_mask);
+{
+   gtk_widget_queue_draw(Closure->readAdaptiveDrawingArea);
 
    return FALSE;
 }
@@ -334,8 +328,7 @@ void GuiResetAdaptiveReadWindow()
       rect.width  = a.width;
       rect.height = a.height;
 
-      gdk_window_clear(gtk_widget_get_window(Closure->readAdaptiveDrawingArea));
-      gdk_window_invalidate_rect(gtk_widget_get_window(Closure->readAdaptiveDrawingArea), &rect, FALSE);
+      gtk_widget_queue_draw(Closure->readAdaptiveDrawingArea);
    }
 }
 
