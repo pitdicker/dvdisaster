@@ -106,7 +106,7 @@ typedef struct _raw_editor_context
 } raw_editor_context;
 
 static void evaluate_vectors(raw_editor_context*);
-static void render_sector(raw_editor_context*);
+static void render_sector(cairo_t *cr, raw_editor_context*);
 
 static raw_editor_context* create_raw_editor_context()
 {  raw_editor_context *rec = Closure->rawEditorContext;
@@ -540,14 +540,13 @@ static void evaluate_vectors(raw_editor_context *rec)
 
 /* Render the sector */
 
-static void render_sector(raw_editor_context *rec)
+static void render_sector(cairo_t *cr, raw_editor_context *rec)
 {  GdkWindow *d = gtk_widget_get_window(rec->drawingArea);
    unsigned char *buf = rec->rb->recovered;
    int idx=0;
    int i,j,w,h,x,y;
 
    if(!d) return;
-   cairo_t *cr = gdk_cairo_create(d);
 
    gdk_cairo_set_source_color(cr, Closure->background);
    cairo_rectangle(cr, 0, 0, rec->daWidth, rec->daHeight);
@@ -605,8 +604,10 @@ static gboolean expose_cb(GtkWidget *widget, GdkEventExpose *event, gpointer dat
    if(event->count) /* Exposure compression */
      return TRUE;
 
+   cairo_t *cr = gdk_cairo_create(GDK_DRAWABLE(gtk_widget_get_window(widget)));
+
    evaluate_vectors(rec);
-   render_sector(rec);
+   render_sector(cr, rec);
 
    return TRUE;
 }
