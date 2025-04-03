@@ -692,8 +692,8 @@ int  GuiCurveX(Curve*, gdouble);
 int  GuiCurveY(Curve*, gdouble);
 int  GuiCurveLogY(Curve*, gdouble);
 
-void GuiRedrawAxes(Curve*);
-void GuiRedrawCurve(Curve*, int);
+void GuiRedrawAxes(cairo_t *cr, Curve*);
+void GuiRedrawCurve(cairo_t *cr, Curve*, int);
 #endif
 
 /***
@@ -1542,8 +1542,8 @@ void GuiSetSpiralWidget(Spiral*, GtkWidget*);
 void GuiFreeSpiral(Spiral*);
 
 void GuiFillSpiral(Spiral*, GdkColor*);
-void GuiDrawSpiral(Spiral*);
-void GuiDrawSpiralLabel(Spiral*, PangoLayout*, char*, GdkColor*, int, int);
+void GuiDrawSpiral(cairo_t *cr, Spiral*);
+void GuiDrawSpiralLabel(cairo_t *cr, Spiral*, PangoLayout*, char*, GdkColor*, int, int);
 void GuiChangeSpiralCursor(Spiral*, int);
 void GuiMoveSpiralCursor(Spiral*, int);
 void GuiSetSpiralSegmentColor(Spiral*, GdkColor*, GdkColor*, int);
