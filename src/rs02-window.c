@@ -111,7 +111,7 @@ void CreateRS02EncWindow(Method *method, GtkWidget *parent)
 static gboolean set_max_idle_func(gpointer data)
 {  RS02Widgets *wl = (RS02Widgets*)data;
 
-   redraw_curve(wl);
+   gtk_widget_queue_draw(wl->fixCurve->widget);
 
    return FALSE;
 }
@@ -239,9 +239,7 @@ void ResetRS02FixWindow(Method *method)
    RS02UpdateFixResults(wl, 0, 0);
 
    if(wl->fixCurve && wl->fixCurve->widget)
-   {  gdk_window_clear(gtk_widget_get_window(wl->fixCurve->widget));
-      redraw_curve(wl);
-   }
+      gtk_widget_queue_draw(wl->fixCurve->widget);
 
    wl->percent = 0;
    wl->lastPercent = 0;
