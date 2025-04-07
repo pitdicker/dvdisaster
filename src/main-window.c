@@ -256,7 +256,7 @@ static GtkWidget *create_button(char *label, char *icon)
  
 
    button = gtk_button_new();
-   box    = gtk_vbox_new(FALSE, 0);
+   box    = gtk_box_new(GTK_ORIENTATION_VERTICAL, 0);
    image  = gtk_image_new_from_stock(icon, GTK_ICON_SIZE_LARGE_TOOLBAR);
    lab    = gtk_label_new(utf_label);
    g_free(utf_label);
@@ -275,8 +275,9 @@ static GtkWidget* create_action_bar(GtkNotebook *notebook)
    int window_number = FIRST_CREATE_WINDOW; 
    unsigned int i;  
 
-   outer_vbox = gtk_vbox_new(TRUE, 0);
-   vbox = gtk_vbox_new(FALSE, 0);   /* needed for vertical spacing */
+   outer_vbox = gtk_box_new(GTK_ORIENTATION_VERTICAL, 0);
+   gtk_box_set_homogeneous(GTK_BOX(outer_vbox), TRUE);
+   vbox = gtk_box_new(GTK_ORIENTATION_VERTICAL, 0);   /* needed for vertical spacing */
    gtk_box_pack_start(GTK_BOX(outer_vbox), vbox, TRUE, TRUE, 3);
 
    /*** Read */
@@ -286,12 +287,12 @@ static GtkWidget* create_action_bar(GtkNotebook *notebook)
    gtk_box_pack_start(GTK_BOX(vbox), wid, FALSE, FALSE, 0);
    GuiAttachTooltip(wid, _("tooltip|Read Image"));
 
-   content = gtk_vbox_new(FALSE, 0);   /* read linear window */
+   content = gtk_box_new(GTK_ORIENTATION_VERTICAL, 0);   /* read linear window */
    ignore = gtk_label_new("read_tab_l");
    gtk_notebook_append_page(notebook, content, ignore);
    GuiCreateLinearReadWindow(content);
 
-   content = gtk_vbox_new(FALSE, 0);   /* read adaptive window */
+   content = gtk_box_new(GTK_ORIENTATION_VERTICAL, 0);   /* read adaptive window */
    ignore = gtk_label_new("read_tab_a");
    gtk_notebook_append_page(notebook, content, ignore);
    GuiCreateAdaptiveReadWindow(content);
@@ -355,21 +356,21 @@ static GtkWidget* create_action_bar(GtkNotebook *notebook)
 
       /* Create window */
 
-      content = gtk_vbox_new(FALSE, 0);
+      content = gtk_box_new(GTK_ORIENTATION_VERTICAL, 0);
       ignore = gtk_label_new("create_tab");
       gtk_notebook_append_page(notebook, content, ignore);
       method->createCreateWindow(method, content);
 
       /* Fix window */
 
-      content = gtk_vbox_new(FALSE, 0);
+      content = gtk_box_new(GTK_ORIENTATION_VERTICAL, 0);
       ignore = gtk_label_new("fix_tab");
       gtk_notebook_append_page(notebook, content, ignore);
       method->createFixWindow(method, content);
 
       /* Verify window */
 
-      content = gtk_vbox_new(FALSE, 0);
+      content = gtk_box_new(GTK_ORIENTATION_VERTICAL, 0);
       ignore = gtk_label_new("verify_tab");
       gtk_notebook_append_page(notebook, content, ignore);
       method->createVerifyWindow(method, content);
@@ -434,7 +435,7 @@ void GuiCreateMainWindow(int *argc, char ***argv)
 
     /*** Create the sub parts of the GUI */
 
-    outer_box = gtk_vbox_new(FALSE, 0);
+    outer_box = gtk_box_new(GTK_ORIENTATION_VERTICAL, 0);
     gtk_container_add(GTK_CONTAINER(window), outer_box);
 
     /* Menu and tool bar */
@@ -453,7 +454,7 @@ void GuiCreateMainWindow(int *argc, char ***argv)
     sep = gtk_hseparator_new();
     gtk_box_pack_start(GTK_BOX(outer_box), sep, FALSE, FALSE, 0);
 
-    middle_box = gtk_hbox_new(FALSE, 0);
+    middle_box = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 0);
     gtk_box_pack_start(GTK_BOX(outer_box), middle_box, TRUE, TRUE, 0);
 
     wid = Closure->notebook = gtk_notebook_new();
@@ -471,7 +472,7 @@ void GuiCreateMainWindow(int *argc, char ***argv)
 
     /* Status bar enclosure */
 
-    status_box = gtk_hbox_new(FALSE, 0);
+    status_box = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 0);
     gtk_box_pack_end(GTK_BOX(outer_box), status_box, FALSE, FALSE, 0);
 
     sep = gtk_hseparator_new();
@@ -490,7 +491,7 @@ void GuiCreateMainWindow(int *argc, char ***argv)
     g_signal_connect(G_OBJECT(button), "clicked", G_CALLBACK(log_cb), NULL);
     GuiAttachTooltip(button,  _("tooltip|Protocol for current action"));
 
-    box = gtk_hbox_new(FALSE, 0);
+    box = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 0);
     gtk_container_add(GTK_CONTAINER(button), box);
 
     icon = gtk_image_new_from_stock("dvdisaster-gtk-index", GTK_ICON_SIZE_SMALL_TOOLBAR);

@@ -259,7 +259,8 @@ void CreateRS02FixWindow(Method *method, GtkWidget *parent)
    gtk_notebook_set_show_border(GTK_NOTEBOOK(notebook), FALSE);
    gtk_box_pack_end(GTK_BOX(parent), notebook, FALSE, FALSE, 0);
 
-   hbox = wl->fixFootlineBox = gtk_hbox_new(TRUE, 0);
+   hbox = wl->fixFootlineBox = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 0);
+   gtk_box_set_homogeneous(GTK_BOX(hbox), TRUE);
 
    wl->fixCorrected = gtk_label_new(NULL);
    gtk_misc_set_alignment(GTK_MISC(wl->fixCorrected), 0.0, 0.0); 
@@ -709,11 +710,11 @@ void CreateRS02PrefsPage(Method *method, GtkWidget *parent)
    frame = gtk_frame_new(_utf("Maximum image size"));
    gtk_box_pack_start(GTK_BOX(parent), frame, FALSE, FALSE, 0);
 
-   vbox = gtk_vbox_new(FALSE, 10);
+   vbox = gtk_box_new(GTK_ORIENTATION_VERTICAL, 10);
    gtk_container_set_border_width(GTK_CONTAINER(vbox), 10);
    gtk_container_add(GTK_CONTAINER(frame), vbox);
 
-   hbox = gtk_hbox_new(FALSE, 0);
+   hbox = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 0);
    gtk_box_pack_start(GTK_BOX(vbox), hbox, FALSE, FALSE, 0);
 
    /* Drive capacity table header */
@@ -722,7 +723,7 @@ void CreateRS02PrefsPage(Method *method, GtkWidget *parent)
 				       _("Use smallest possible size from following table (in sectors):"));
    GuiRegisterPreferencesHelpWindow(lwoh);
 
-   vbox2 = gtk_vbox_new(FALSE, 0);
+   vbox2 = gtk_box_new(GTK_ORIENTATION_VERTICAL, 0);
    gtk_box_pack_start(GTK_BOX(hbox), vbox2, FALSE, FALSE, 0);
 
    for(i=0; i<2; i++)
@@ -735,7 +736,7 @@ void CreateRS02PrefsPage(Method *method, GtkWidget *parent)
 	 gtk_box_pack_start(GTK_BOX(vbox2), radio, FALSE, FALSE, 0);
       }
       else
-      {  GtkWidget *hbox = gtk_hbox_new(FALSE, 4);
+      {  GtkWidget *hbox = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 4);
          wl->radio1B = radio;
 	 gtk_box_pack_start(GTK_BOX(hbox), radio, FALSE, FALSE, 0);
 	 gtk_box_pack_start(GTK_BOX(hbox), lwoh->normalLabel, FALSE, FALSE, 0);
@@ -759,7 +760,7 @@ void CreateRS02PrefsPage(Method *method, GtkWidget *parent)
    gtk_box_pack_start(GTK_BOX(hbox), table, FALSE, FALSE, 0);
 
    gtk_misc_set_alignment(GTK_MISC(lwoh->linkLabel), 0.0, 0.0); 
-   tinybox = gtk_hbox_new(FALSE, 0);
+   tinybox = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 0);
    gtk_box_pack_start(GTK_BOX(tinybox), lwoh->linkBox, FALSE, FALSE, 0);
    gtk_box_pack_start(GTK_BOX(tinybox), lwoh->tooltip, FALSE, FALSE, 0);
    gtk_table_attach(GTK_TABLE(table), tinybox, 0, 5, 0, 1, GTK_SHRINK | GTK_FILL, GTK_SHRINK, 5, 5);
@@ -770,7 +771,7 @@ void CreateRS02PrefsPage(Method *method, GtkWidget *parent)
    GuiRegisterPreferencesHelpWindow(lwoh);
 
      gtk_misc_set_alignment(GTK_MISC(lwoh->linkLabel), 0.0, 0.0); 
-     tinybox = gtk_hbox_new(FALSE, 0);
+     tinybox = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 0);
      gtk_box_pack_start(GTK_BOX(tinybox), lwoh->linkBox, FALSE, FALSE, 0);
      gtk_box_pack_start(GTK_BOX(tinybox), lwoh->tooltip, FALSE, FALSE, 0);
      gtk_table_attach(GTK_TABLE(table), tinybox, 0, 1, 1, 2, GTK_SHRINK | GTK_FILL, GTK_SHRINK, 5, 5);
@@ -790,7 +791,7 @@ void CreateRS02PrefsPage(Method *method, GtkWidget *parent)
      g_signal_connect(G_OBJECT(wl->cdUndoButtonA), "clicked", G_CALLBACK(query_cb), wl);
      gtk_table_attach(GTK_TABLE(table), wl->cdUndoButtonA, 3, 4, 1, 2, GTK_SHRINK | GTK_FILL, GTK_SHRINK, 5, 5);
 
-   hbox = gtk_hbox_new(FALSE, 4);
+   hbox = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 4);
 
    gtk_box_pack_start(GTK_BOX(hbox), lwoh->normalLabel, FALSE, FALSE, 0);
 
@@ -834,7 +835,7 @@ void CreateRS02PrefsPage(Method *method, GtkWidget *parent)
    GuiRegisterPreferencesHelpWindow(lwoh);
 
      gtk_misc_set_alignment(GTK_MISC(lwoh->linkLabel), 0.0, 0.0); 
-     tinybox = gtk_hbox_new(FALSE, 0);
+     tinybox = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 0);
      gtk_box_pack_start(GTK_BOX(tinybox), lwoh->linkBox, FALSE, FALSE, 0);
      gtk_box_pack_start(GTK_BOX(tinybox), lwoh->tooltip, FALSE, FALSE, 0);
      gtk_table_attach(GTK_TABLE(table), tinybox, 0, 1, 2, 3, GTK_SHRINK | GTK_FILL, GTK_SHRINK, 5, 5);
@@ -854,7 +855,7 @@ void CreateRS02PrefsPage(Method *method, GtkWidget *parent)
      g_signal_connect(G_OBJECT(wl->dvdUndoButton1A), "clicked", G_CALLBACK(query_cb), wl);
      gtk_table_attach(GTK_TABLE(table), wl->dvdUndoButton1A, 3, 4, 2, 3, GTK_SHRINK | GTK_FILL, GTK_SHRINK, 5, 5);
 
-   hbox = gtk_hbox_new(FALSE, 4);
+   hbox = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 4);
 
    gtk_box_pack_start(GTK_BOX(hbox), lwoh->normalLabel, FALSE, FALSE, 0);
 
@@ -898,7 +899,7 @@ void CreateRS02PrefsPage(Method *method, GtkWidget *parent)
    GuiRegisterPreferencesHelpWindow(lwoh);
 
      gtk_misc_set_alignment(GTK_MISC(lwoh->linkLabel), 0.0, 0.0); 
-     tinybox = gtk_hbox_new(FALSE, 0);
+     tinybox = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 0);
      gtk_box_pack_start(GTK_BOX(tinybox), lwoh->linkBox, FALSE, FALSE, 0);
      gtk_box_pack_start(GTK_BOX(tinybox), lwoh->tooltip, FALSE, FALSE, 0);
      gtk_table_attach(GTK_TABLE(table), tinybox, 0, 1, 3, 4, GTK_SHRINK | GTK_FILL, GTK_SHRINK, 5, 5);
@@ -918,7 +919,7 @@ void CreateRS02PrefsPage(Method *method, GtkWidget *parent)
      g_signal_connect(G_OBJECT(wl->dvdUndoButton2A), "clicked", G_CALLBACK(query_cb), wl);
      gtk_table_attach(GTK_TABLE(table), wl->dvdUndoButton2A, 3, 4, 3, 4, GTK_SHRINK | GTK_FILL, GTK_SHRINK, 5, 5);
 
-   hbox = gtk_hbox_new(FALSE, 4);
+   hbox = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 4);
 
    gtk_box_pack_start(GTK_BOX(hbox), lwoh->normalLabel, FALSE, FALSE, 0);
 
@@ -962,7 +963,7 @@ void CreateRS02PrefsPage(Method *method, GtkWidget *parent)
    GuiRegisterPreferencesHelpWindow(lwoh);
 
      gtk_misc_set_alignment(GTK_MISC(lwoh->linkLabel), 0.0, 0.0); 
-     tinybox = gtk_hbox_new(FALSE, 0);
+     tinybox = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 0);
      gtk_box_pack_start(GTK_BOX(tinybox), lwoh->linkBox, FALSE, FALSE, 0);
      gtk_box_pack_start(GTK_BOX(tinybox), lwoh->tooltip, FALSE, FALSE, 0);
      gtk_table_attach(GTK_TABLE(table), tinybox, 0, 1, 4, 5, GTK_SHRINK | GTK_FILL, GTK_SHRINK, 5, 5);
@@ -982,7 +983,7 @@ void CreateRS02PrefsPage(Method *method, GtkWidget *parent)
      g_signal_connect(G_OBJECT(wl->bdUndoButton1A), "clicked", G_CALLBACK(query_cb), wl);
      gtk_table_attach(GTK_TABLE(table), wl->bdUndoButton1A, 3, 4, 4, 5, GTK_SHRINK | GTK_FILL, GTK_SHRINK, 5, 5);
 
-   hbox = gtk_hbox_new(FALSE, 4);
+   hbox = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 4);
 
    gtk_box_pack_start(GTK_BOX(hbox), lwoh->normalLabel, FALSE, FALSE, 0);
 
@@ -1025,7 +1026,7 @@ void CreateRS02PrefsPage(Method *method, GtkWidget *parent)
    GuiRegisterPreferencesHelpWindow(lwoh);
 
      gtk_misc_set_alignment(GTK_MISC(lwoh->linkLabel), 0.0, 0.0); 
-     tinybox = gtk_hbox_new(FALSE, 0);
+     tinybox = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 0);
      gtk_box_pack_start(GTK_BOX(tinybox), lwoh->linkBox, FALSE, FALSE, 0);
      gtk_box_pack_start(GTK_BOX(tinybox), lwoh->tooltip, FALSE, FALSE, 0);
      gtk_table_attach(GTK_TABLE(table), tinybox, 0, 1, 5, 6, GTK_SHRINK | GTK_FILL, GTK_SHRINK, 5, 5);
@@ -1045,7 +1046,7 @@ void CreateRS02PrefsPage(Method *method, GtkWidget *parent)
      g_signal_connect(G_OBJECT(wl->bdUndoButton2A), "clicked", G_CALLBACK(query_cb), wl);
      gtk_table_attach(GTK_TABLE(table), wl->bdUndoButton2A, 3, 4, 5, 6, GTK_SHRINK | GTK_FILL, GTK_SHRINK, 5, 5);
 
-   hbox = gtk_hbox_new(FALSE, 4);
+   hbox = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 4);
 
    gtk_box_pack_start(GTK_BOX(hbox), lwoh->normalLabel, FALSE, FALSE, 0);
 
@@ -1088,7 +1089,7 @@ void CreateRS02PrefsPage(Method *method, GtkWidget *parent)
    GuiRegisterPreferencesHelpWindow(lwoh);
 
      gtk_misc_set_alignment(GTK_MISC(lwoh->linkLabel), 0.0, 0.0); 
-     tinybox = gtk_hbox_new(FALSE, 0);
+     tinybox = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 0);
      gtk_box_pack_start(GTK_BOX(tinybox), lwoh->linkBox, FALSE, FALSE, 0);
      gtk_box_pack_start(GTK_BOX(tinybox), lwoh->tooltip, FALSE, FALSE, 0);
      gtk_table_attach(GTK_TABLE(table), tinybox, 0, 1, 6, 7, GTK_SHRINK | GTK_FILL, GTK_SHRINK, 5, 5);
@@ -1108,7 +1109,7 @@ void CreateRS02PrefsPage(Method *method, GtkWidget *parent)
      g_signal_connect(G_OBJECT(wl->bdUndoButton3A), "clicked", G_CALLBACK(query_cb), wl);
      gtk_table_attach(GTK_TABLE(table), wl->bdUndoButton3A, 3, 4, 6, 7, GTK_SHRINK | GTK_FILL, GTK_SHRINK, 5, 5);
 
-   hbox = gtk_hbox_new(FALSE, 4);
+   hbox = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 4);
 
    gtk_box_pack_start(GTK_BOX(hbox), lwoh->normalLabel, FALSE, FALSE, 0);
 
@@ -1153,7 +1154,7 @@ void CreateRS02PrefsPage(Method *method, GtkWidget *parent)
    GuiRegisterPreferencesHelpWindow(lwoh);
 
      gtk_misc_set_alignment(GTK_MISC(lwoh->linkLabel), 0.0, 0.0); 
-     tinybox = gtk_hbox_new(FALSE, 0);
+     tinybox = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 0);
      gtk_box_pack_start(GTK_BOX(tinybox), lwoh->linkBox, FALSE, FALSE, 0);
      gtk_box_pack_start(GTK_BOX(tinybox), lwoh->tooltip, FALSE, FALSE, 0);
      gtk_table_attach(GTK_TABLE(table), tinybox, 0, 1, 7, 8, GTK_SHRINK | GTK_FILL, GTK_SHRINK, 5, 5);
@@ -1173,7 +1174,7 @@ void CreateRS02PrefsPage(Method *method, GtkWidget *parent)
      g_signal_connect(G_OBJECT(wl->bdUndoButton4A), "clicked", G_CALLBACK(query_cb), wl);
      gtk_table_attach(GTK_TABLE(table), wl->bdUndoButton4A, 3, 4, 7, 8, GTK_SHRINK | GTK_FILL, GTK_SHRINK, 5, 5);
 
-   hbox = gtk_hbox_new(FALSE, 4);
+   hbox = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 4);
 
    gtk_box_pack_start(GTK_BOX(hbox), lwoh->normalLabel, FALSE, FALSE, 0);
 
@@ -1239,7 +1240,7 @@ void CreateRS02PrefsPage(Method *method, GtkWidget *parent)
    GuiRegisterPreferencesHelpWindow(lwoh);
 
    for(i=0; i<2; i++)
-   {  GtkWidget *hbox = gtk_hbox_new(FALSE, 4);
+   {  GtkWidget *hbox = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 4);
       GtkWidget *entry;
 
       if(!i) wl->radio2A = radio = gtk_radio_button_new_from_widget(GTK_RADIO_BUTTON(wl->radio1A));
@@ -1315,7 +1316,7 @@ void CreateRS02PrefsPage(Method *method, GtkWidget *parent)
    GuiLockLabelSize(lwoh->linkLabel, _utf("%d MiB of file cache"), 2222);
 
    for(i=0; i<2; i++)
-   {  GtkWidget *hbox = gtk_hbox_new(FALSE, 4);
+   {  GtkWidget *hbox = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 4);
       int n_entries = sizeof(cache_size)/sizeof(int);
 
       lab = gtk_label_new(_utf("Use"));
