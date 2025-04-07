@@ -151,7 +151,7 @@ LabelWithOnlineHelp* GuiCreateLabelWithOnlineHelp(char *title, char *ascii_text)
    gtk_box_pack_end(GTK_BOX(hbox), button, FALSE, FALSE, 0);
    g_signal_connect(G_OBJECT(button), "clicked", G_CALLBACK(close_cb), lwoh);
 
-   gtk_box_pack_end(GTK_BOX(vbox), gtk_hseparator_new(), FALSE, FALSE, 6);
+   gtk_box_pack_end(GTK_BOX(vbox), gtk_separator_new(GTK_ORIENTATION_HORIZONTAL), FALSE, FALSE, 6);
 
    /*** Put link label into an event box */
 
@@ -324,7 +324,7 @@ void GuiAddHelpListItem(LabelWithOnlineHelp *lwoh, char *format, ...)
 void GuiAddHelpWidget(LabelWithOnlineHelp *lwoh, GtkWidget *widget)
 {  
    gtk_box_pack_start(GTK_BOX(lwoh->vbox), widget, FALSE, FALSE, 10);
-   gtk_box_pack_start(GTK_BOX(lwoh->vbox), gtk_hseparator_new(), FALSE, FALSE, 10);
+   gtk_box_pack_start(GTK_BOX(lwoh->vbox), gtk_separator_new(GTK_ORIENTATION_HORIZONTAL), FALSE, FALSE, 10);
 }
 
 /***
@@ -560,7 +560,7 @@ GtkWidget* GuiShowTextfile(char *title, char *explanation, char *file,
    gtk_misc_set_alignment(GTK_MISC(lab), 0.0, 0.0); 
    gtk_box_pack_start(GTK_BOX(vbox), lab, FALSE, FALSE, 0);
 
-   sep = gtk_hseparator_new();
+   sep = gtk_separator_new(GTK_ORIENTATION_HORIZONTAL);
    gtk_box_pack_start(GTK_BOX(vbox), sep, FALSE, FALSE, 0);
 
    scroll_win = gtk_scrolled_window_new(NULL, NULL);
@@ -746,7 +746,7 @@ void GuiAboutDialog()
 		"Copyright 2019-2021 The dvdisaster development team."
    ));
 
-   sep = gtk_hseparator_new();
+   sep = gtk_separator_new(GTK_ORIENTATION_HORIZONTAL);
    gtk_box_pack_start(GTK_BOX(vbox), sep, FALSE, FALSE, 10);
 
 
