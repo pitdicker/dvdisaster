@@ -463,7 +463,7 @@ GtkWidget *GuiCreateToolBar(GtkWidget *parent)
    space = gtk_label_new(NULL);
    gtk_box_pack_start(GTK_BOX(box), space, FALSE, FALSE, 1);
 
-   sep = gtk_vseparator_new();
+   sep = gtk_separator_new(GTK_ORIENTATION_VERTICAL);
    gtk_box_pack_start(GTK_BOX(box), sep, FALSE, FALSE, 3);
 
    /*** Image file selection */
@@ -486,7 +486,7 @@ GtkWidget *GuiCreateToolBar(GtkWidget *parent)
    space = gtk_label_new(NULL);
    gtk_box_pack_start(GTK_BOX(box), space, FALSE, FALSE, 5);
 
-   sep = gtk_vseparator_new();
+   sep = gtk_separator_new(GTK_ORIENTATION_VERTICAL);
    gtk_box_pack_start(GTK_BOX(box), sep, FALSE, FALSE, 3);
    GuiAttachTooltip(button, _("tooltip|Image file selection"));
    GuiAttachTooltip(Closure->imageEntry, _("tooltip|Current image file"));
@@ -511,7 +511,7 @@ GtkWidget *GuiCreateToolBar(GtkWidget *parent)
    space = gtk_label_new(NULL);
    gtk_box_pack_start(GTK_BOX(box), space, FALSE, FALSE, 5);
 
-   sep = gtk_vseparator_new();
+   sep = gtk_separator_new(GTK_ORIENTATION_VERTICAL);
    gtk_box_pack_start(GTK_BOX(box), sep, FALSE, FALSE, 3);
    GuiAttachTooltip(button, _("tooltip|Error correction file selection"));
    GuiAttachTooltip(Closure->eccEntry, _("tooltip|Current error correction file"));
