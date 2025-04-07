@@ -371,7 +371,7 @@ static GtkWidget *create_page(GtkWidget *notebook, char *label)
 {  GtkWidget *vbox,*tab_label;
 
    tab_label = gtk_label_new(label);
-   vbox = gtk_vbox_new(FALSE, 5);
+   vbox = gtk_box_new(GTK_ORIENTATION_VERTICAL, 5);
    gtk_container_set_border_width(GTK_CONTAINER(vbox), 12);
    
    gtk_notebook_append_page(GTK_NOTEBOOK(notebook), vbox, tab_label);
@@ -821,7 +821,7 @@ static GtkWidget* non_linear_scale(GtkWidget **hbox_out, non_linear_info *nli,
    nli->values = values;
    nli->pc     = pc;
 
-   hbox = gtk_hbox_new(FALSE, 0);
+   hbox = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 0);
    scale = gtk_hscale_new_with_range(0,n-1,1);
    gtk_scale_set_value_pos(GTK_SCALE(scale), GTK_POS_RIGHT);
    gtk_range_set_increments(GTK_RANGE(scale), 1, 1);
@@ -1195,7 +1195,7 @@ void GuiCreatePreferencesWindow(void)
 
       /* Create the main layout of the window */
 
-      outer_box = gtk_vbox_new(FALSE, 0);
+      outer_box = gtk_box_new(GTK_ORIENTATION_VERTICAL, 0);
       gtk_container_add(GTK_CONTAINER(window), outer_box);
 
       notebook = pc->mainNotebook = gtk_notebook_new();
@@ -1204,7 +1204,7 @@ void GuiCreatePreferencesWindow(void)
       space = gtk_image_new();
       gtk_box_pack_start(GTK_BOX(outer_box), space, FALSE, FALSE, 4);
 
-      hbox = gtk_hbox_new(FALSE, 0);
+      hbox = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 0);
       gtk_box_pack_start(GTK_BOX(outer_box), hbox, FALSE, FALSE, 0);
 
       button = gtk_button_new_from_stock(GTK_STOCK_CLOSE);
@@ -1220,7 +1220,7 @@ void GuiCreatePreferencesWindow(void)
       frame = gtk_frame_new(_utf("Image creation"));
       gtk_box_pack_start(GTK_BOX(vbox), frame, FALSE, FALSE, 0);
 
-      vbox2 = gtk_vbox_new(FALSE, 20);
+      vbox2 = gtk_box_new(GTK_ORIENTATION_VERTICAL, 20);
       gtk_container_set_border_width(GTK_CONTAINER(vbox2), 10);
       gtk_container_add(GTK_CONTAINER(frame), vbox2);
 
@@ -1231,7 +1231,7 @@ void GuiCreatePreferencesWindow(void)
       GuiRegisterPreferencesHelpWindow(lwoh);
 
       for(i=0; i<2; i++)
-      {  GtkWidget *hbox = gtk_hbox_new(FALSE, 4);
+      {  GtkWidget *hbox = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 4);
 	 GtkWidget *lab, *radio1, *radio2;
 
 	 gtk_box_pack_start(GTK_BOX(hbox), i ? lwoh->normalLabel : lwoh->linkBox, FALSE, FALSE, 0);
@@ -1279,7 +1279,7 @@ void GuiCreatePreferencesWindow(void)
       GuiRegisterPreferencesHelpWindow(lwoh);
 
       for(i=0; i<2; i++)
-      {  GtkWidget *hbox = gtk_hbox_new(FALSE, 4);
+      {  GtkWidget *hbox = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 4);
 	 GtkWidget *toggle,*spin1, *spin2;
 
 	 //	 toggle = gtk_check_button_new_with_label(_utf("Read/Scan from sector"));
@@ -1332,7 +1332,7 @@ void GuiCreatePreferencesWindow(void)
       frame = gtk_frame_new(_utf("Error correction data recognization"));
       gtk_box_pack_start(GTK_BOX(vbox), frame, FALSE, FALSE, 0);
 
-      vbox2 = gtk_vbox_new(FALSE, 15);
+      vbox2 = gtk_box_new(GTK_ORIENTATION_VERTICAL, 15);
       gtk_container_set_border_width(GTK_CONTAINER(vbox2), 10);
       gtk_container_add(GTK_CONTAINER(frame), vbox2);
 
@@ -1343,7 +1343,7 @@ void GuiCreatePreferencesWindow(void)
       GuiRegisterPreferencesHelpWindow(lwoh);
 
       for(i=0; i<2; i++)
-      {  GtkWidget *hbox = gtk_hbox_new(FALSE, 0);
+      {  GtkWidget *hbox = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 0);
 	 GtkWidget *button = gtk_check_button_new();
 
 	 gtk_box_pack_start(GTK_BOX(hbox), button, FALSE, FALSE, 0);
@@ -1384,7 +1384,7 @@ void GuiCreatePreferencesWindow(void)
       GuiRegisterPreferencesHelpWindow(lwoh);
 
       for(i=0; i<2; i++)
-      {  GtkWidget *hbox = gtk_hbox_new(FALSE, 0);
+      {  GtkWidget *hbox = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 0);
 	 GtkWidget *button = gtk_check_button_new();
 
 	 gtk_box_pack_start(GTK_BOX(hbox), button, FALSE, FALSE, 0);
@@ -1423,7 +1423,7 @@ void GuiCreatePreferencesWindow(void)
       frame = gtk_frame_new(_utf("Image properties"));
       gtk_box_pack_start(GTK_BOX(vbox), frame, FALSE, FALSE, 0);
 
-      vbox2 = gtk_vbox_new(FALSE, 15);
+      vbox2 = gtk_box_new(GTK_ORIENTATION_VERTICAL, 15);
       gtk_container_set_border_width(GTK_CONTAINER(vbox2), 10);
       gtk_container_add(GTK_CONTAINER(frame), vbox2);
 
@@ -1434,7 +1434,7 @@ void GuiCreatePreferencesWindow(void)
       GuiRegisterPreferencesHelpWindow(lwoh);
 
       for(i=0; i<2; i++)
-      {  GtkWidget *hbox = gtk_hbox_new(FALSE, 0);
+      {  GtkWidget *hbox = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 0);
 	 GtkWidget *button = gtk_check_button_new();
 
 	 gtk_box_pack_start(GTK_BOX(hbox), button, FALSE, FALSE, 0);
@@ -1475,7 +1475,7 @@ void GuiCreatePreferencesWindow(void)
       GuiRegisterPreferencesHelpWindow(lwoh);
 
       for(i=0; i<2; i++)
-      {  GtkWidget *hbox = gtk_hbox_new(FALSE, 0);
+      {  GtkWidget *hbox = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 0);
 	 GtkWidget *button = gtk_check_button_new();
 
 	 gtk_box_pack_start(GTK_BOX(hbox), button, FALSE, FALSE, 0);
@@ -1510,7 +1510,7 @@ void GuiCreatePreferencesWindow(void)
       frame = gtk_frame_new(_utf("Image format"));
       gtk_box_pack_start(GTK_BOX(vbox), frame, FALSE, FALSE, 0);
 
-      vbox2 = gtk_vbox_new(FALSE, 15);
+      vbox2 = gtk_box_new(GTK_ORIENTATION_VERTICAL, 15);
       gtk_container_set_border_width(GTK_CONTAINER(vbox2), 10);
       gtk_container_add(GTK_CONTAINER(frame), vbox2);
 
@@ -1521,7 +1521,7 @@ void GuiCreatePreferencesWindow(void)
       GuiRegisterPreferencesHelpWindow(lwoh);
 
       for(i=0; i<2; i++)
-      {  GtkWidget *hbox = gtk_hbox_new(FALSE, 0);
+      {  GtkWidget *hbox = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 0);
 	 GtkWidget *button = gtk_check_button_new();
 
 	 gtk_box_pack_start(GTK_BOX(hbox), button, FALSE, FALSE, 0);
@@ -1563,7 +1563,7 @@ void GuiCreatePreferencesWindow(void)
 	 GuiRegisterPreferencesHelpWindow(lwoh);
 
 	 for(i=0; i<2; i++)
-	 {  GtkWidget *hbox = gtk_hbox_new(FALSE, 4);
+	 {  GtkWidget *hbox = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 4);
 	    GtkWidget *check, *entry;
 
 	    check = gtk_check_button_new();
@@ -1634,7 +1634,7 @@ void GuiCreatePreferencesWindow(void)
       GuiRegisterPreferencesHelpWindow(lwoh_clone);
 
       for(i=0; i<2; i++)
-      {  GtkWidget *hbox = gtk_hbox_new(FALSE, 4);
+      {  GtkWidget *hbox = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 4);
 	 GtkWidget *spin;
 
 	 gtk_box_pack_start(GTK_BOX(hbox), i ? lwoh->normalLabel : lwoh->linkBox, FALSE, FALSE, 0);
@@ -1669,7 +1669,7 @@ void GuiCreatePreferencesWindow(void)
       frame = gtk_frame_new(_utf("Raw reading parameters"));
       gtk_box_pack_start(GTK_BOX(vbox), frame, FALSE, FALSE, 0);
 
-      vbox2 = gtk_vbox_new(FALSE, 15);
+      vbox2 = gtk_box_new(GTK_ORIENTATION_VERTICAL, 15);
       gtk_container_set_border_width(GTK_CONTAINER(vbox2), 10);
       gtk_container_add(GTK_CONTAINER(frame), vbox2);
 
@@ -1680,7 +1680,7 @@ void GuiCreatePreferencesWindow(void)
       GuiRegisterPreferencesHelpWindow(lwoh);
 
       for(i=0; i<2; i++)
-      {  GtkWidget *hbox = gtk_hbox_new(FALSE, 4);
+      {  GtkWidget *hbox = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 4);
 	 GtkWidget *lab, *radio1, *radio2, *radio3, *entry;
 	 char value[11];
 
@@ -1776,7 +1776,7 @@ void GuiCreatePreferencesWindow(void)
       GuiRegisterPreferencesHelpWindow(lwoh_clone);
 
       for(i=0; i<2; i++)
-      {  GtkWidget *hbox = gtk_hbox_new(FALSE, 4);
+      {  GtkWidget *hbox = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 4);
 	 GtkWidget *spin;
 
 	 gtk_box_pack_start(GTK_BOX(hbox), i ? lwoh->normalLabel : lwoh->linkBox, FALSE, FALSE, 0);
@@ -1824,7 +1824,7 @@ void GuiCreatePreferencesWindow(void)
       GuiRegisterPreferencesHelpWindow(lwoh);
 
       for(i=0; i<2; i++)
-      {  GtkWidget *hbox = gtk_hbox_new(FALSE, 4);
+      {  GtkWidget *hbox = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 4);
 	 GtkWidget *toggle;
 
 	 toggle = gtk_check_button_new();
@@ -1865,7 +1865,7 @@ void GuiCreatePreferencesWindow(void)
       GuiRegisterPreferencesHelpWindow(lwoh);
 
       for(i=0; i<2; i++)
-      {  GtkWidget *hbox = gtk_hbox_new(FALSE, 4);
+      {  GtkWidget *hbox = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 4);
 	 GtkWidget *toggle;
 
 	 toggle = gtk_check_button_new();
@@ -1905,7 +1905,7 @@ void GuiCreatePreferencesWindow(void)
       frame = gtk_frame_new(_utf("Sector read errors"));
       gtk_box_pack_start(GTK_BOX(vbox), frame, FALSE, FALSE, 0);
 
-      vbox2 = gtk_vbox_new(FALSE, 20);
+      vbox2 = gtk_box_new(GTK_ORIENTATION_VERTICAL, 20);
       gtk_container_set_border_width(GTK_CONTAINER(vbox2), 10);
       gtk_container_add(GTK_CONTAINER(frame), vbox2);
 
@@ -1916,7 +1916,7 @@ void GuiCreatePreferencesWindow(void)
       GuiRegisterPreferencesHelpWindow(lwoh);
 
       for(i=0; i<2; i++)
-      {  GtkWidget *hbox = gtk_hbox_new(FALSE, 0);
+      {  GtkWidget *hbox = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 0);
 
 	 button = gtk_check_button_new();
 	 gtk_box_pack_start(GTK_BOX(hbox), button, FALSE, FALSE, 0);
@@ -2113,7 +2113,7 @@ void GuiCreatePreferencesWindow(void)
       GuiRegisterPreferencesHelpWindow(lwoh);
 
       for(i=0; i<2; i++)
-      {  GtkWidget *hbox = gtk_hbox_new(FALSE, 0);
+      {  GtkWidget *hbox = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 0);
 	 GtkWidget *spin;
 	 GtkWidget *label;
 
@@ -2150,7 +2150,7 @@ void GuiCreatePreferencesWindow(void)
       frame = gtk_frame_new(_utf("Raw sector caching"));
       gtk_box_pack_start(GTK_BOX(vbox), frame, FALSE, FALSE, 0);
 
-      vbox2 = gtk_vbox_new(FALSE, 20);
+      vbox2 = gtk_box_new(GTK_ORIENTATION_VERTICAL, 20);
       gtk_container_set_border_width(GTK_CONTAINER(vbox2), 10);
       gtk_container_add(GTK_CONTAINER(frame), vbox2);
 
@@ -2162,8 +2162,8 @@ void GuiCreatePreferencesWindow(void)
 
       for(i=0; i<2; i++)
       {  GtkWidget *table = gtk_table_new(3,2,FALSE);
-	 GtkWidget *hbox = gtk_hbox_new(FALSE, 0);
-	 GtkWidget *tinybox = gtk_hbox_new(FALSE, 0);
+	 GtkWidget *hbox = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 0);
+	 GtkWidget *tinybox = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 0);
 	 GtkWidget *label = gtk_label_new(Closure->dDumpDir);
 	 GtkWidget *select = gtk_button_new_with_label(_utf("Select"));
 
@@ -2177,7 +2177,7 @@ void GuiCreatePreferencesWindow(void)
 	 gtk_misc_set_alignment(GTK_MISC(lwoh->linkLabel), 0.0, 0.0);
 	 gtk_misc_set_alignment(GTK_MISC(lwoh->normalLabel), 0.0, 0.0);
 
-	 hbox = gtk_hbox_new(FALSE, 0);
+	 hbox = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 0);
 	 gtk_box_pack_start(GTK_BOX(hbox), label, FALSE, FALSE, 0);
 	 gtk_table_attach(GTK_TABLE(table), hbox, 
 			  1, 2, 1, 2, GTK_EXPAND | GTK_FILL, GTK_SHRINK, 0, 0);
@@ -2229,7 +2229,7 @@ void GuiCreatePreferencesWindow(void)
       GuiRegisterPreferencesHelpWindow(lwoh);
 
       for(i=0; i<2; i++)
-      {  GtkWidget *hbox = gtk_hbox_new(FALSE, 0);
+      {  GtkWidget *hbox = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 0);
 	 GtkWidget *entry = gtk_entry_new();
 
        	 gtk_box_pack_start(GTK_BOX(hbox), i ? lwoh->normalLabel : lwoh->linkBox, FALSE, FALSE, 0);
@@ -2263,7 +2263,7 @@ void GuiCreatePreferencesWindow(void)
       GuiRegisterPreferencesHelpWindow(lwoh);
 
       for(i=0; i<2; i++)
-      {  GtkWidget *hbox = gtk_hbox_new(FALSE, 4);
+      {  GtkWidget *hbox = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 4);
 	 GtkWidget *chooser;
 	 int j;
 
@@ -2328,7 +2328,7 @@ void GuiCreatePreferencesWindow(void)
 
       for(i=0; i<Closure->methodList->len; i++)
       {  Method *method = g_ptr_array_index(Closure->methodList, i);
-	 GtkWidget *vbox2 = gtk_vbox_new(FALSE, 0);
+	 GtkWidget *vbox2 = gtk_box_new(GTK_ORIENTATION_VERTICAL, 0);
 	 GtkWidget *ignore = gtk_label_new("method_tab");
 
 	 if(method->createPrefsPage)
@@ -2356,7 +2356,7 @@ void GuiCreatePreferencesWindow(void)
       frame = gtk_frame_new(_utf("Local files (on hard disk)"));
       gtk_box_pack_start(GTK_BOX(vbox), frame, FALSE, FALSE, 0);
 
-      vbox2 = gtk_vbox_new(FALSE, 15);
+      vbox2 = gtk_box_new(GTK_ORIENTATION_VERTICAL, 15);
       gtk_container_set_border_width(GTK_CONTAINER(vbox2), 10);
       gtk_container_add(GTK_CONTAINER(frame), vbox2);
 
@@ -2365,7 +2365,7 @@ void GuiCreatePreferencesWindow(void)
       GuiRegisterPreferencesHelpWindow(lwoh);
 
       for(i=0; i<2; i++)
-      {  GtkWidget *hbox = gtk_hbox_new(FALSE, 0);
+      {  GtkWidget *hbox = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 0);
 	 GtkWidget *button = gtk_check_button_new();
 
 	 gtk_box_pack_start(GTK_BOX(hbox), button, FALSE, FALSE, 0);
@@ -2395,7 +2395,7 @@ void GuiCreatePreferencesWindow(void)
       frame = gtk_frame_new(_utf("Automatic file creation and deletion"));
       gtk_box_pack_start(GTK_BOX(vbox), frame, FALSE, FALSE, 0);
 
-      vbox2 = gtk_vbox_new(FALSE, 15);
+      vbox2 = gtk_box_new(GTK_ORIENTATION_VERTICAL, 15);
       gtk_container_set_border_width(GTK_CONTAINER(vbox2), 10);
       gtk_container_add(GTK_CONTAINER(frame), vbox2);
 
@@ -2406,7 +2406,7 @@ void GuiCreatePreferencesWindow(void)
       GuiRegisterPreferencesHelpWindow(lwoh);
 
       for(i=0; i<2; i++)
-      {  GtkWidget *hbox = gtk_hbox_new(FALSE, 0);
+      {  GtkWidget *hbox = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 0);
 	 GtkWidget *button = gtk_check_button_new();
 
 	 gtk_box_pack_start(GTK_BOX(hbox), button, FALSE, FALSE, 0);
@@ -2438,7 +2438,7 @@ void GuiCreatePreferencesWindow(void)
       GuiRegisterPreferencesHelpWindow(lwoh);
 
       for(i=0; i<2; i++)
-      {  GtkWidget *hbox = gtk_hbox_new(FALSE, 0);
+      {  GtkWidget *hbox = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 0);
 	 GtkWidget *button = gtk_check_button_new();
 
 	 gtk_box_pack_start(GTK_BOX(hbox), button, FALSE, FALSE, 0);
@@ -2467,7 +2467,7 @@ void GuiCreatePreferencesWindow(void)
       frame = gtk_frame_new(_utf("Confirm file overwriting"));
       gtk_box_pack_start(GTK_BOX(vbox), frame, FALSE, FALSE, 0);
 
-      vbox2 = gtk_vbox_new(FALSE, 15);
+      vbox2 = gtk_box_new(GTK_ORIENTATION_VERTICAL, 15);
       gtk_container_set_border_width(GTK_CONTAINER(vbox2), 10);
       gtk_container_add(GTK_CONTAINER(frame), vbox2);
 
@@ -2478,7 +2478,7 @@ void GuiCreatePreferencesWindow(void)
       GuiRegisterPreferencesHelpWindow(lwoh);
 
       for(i=0; i<2; i++)
-      {  GtkWidget *hbox = gtk_hbox_new(FALSE, 0);
+      {  GtkWidget *hbox = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 0);
 	 GtkWidget *button = gtk_check_button_new();
 
 	 gtk_box_pack_start(GTK_BOX(hbox), button, FALSE, FALSE, 0);
@@ -2513,7 +2513,7 @@ void GuiCreatePreferencesWindow(void)
       table = gtk_table_new(2, 4, FALSE);
       gtk_box_pack_start(GTK_BOX(vbox), table, FALSE, FALSE, 0);
 
-      vbox3 = gtk_vbox_new(FALSE, 0);
+      vbox3 = gtk_box_new(GTK_ORIENTATION_VERTICAL, 0);
       gtk_table_attach(GTK_TABLE(table), vbox3, 
 		       0, 1, 0, 3, GTK_EXPAND | GTK_FILL, GTK_SHRINK, 5, 5);
 
@@ -2522,7 +2522,7 @@ void GuiCreatePreferencesWindow(void)
 
       gtk_box_pack_start(GTK_BOX(vbox3), gtk_label_new(NULL), TRUE, TRUE, 0);
 
-      vbox2 = gtk_vbox_new(FALSE, 20);
+      vbox2 = gtk_box_new(GTK_ORIENTATION_VERTICAL, 20);
       gtk_container_set_border_width(GTK_CONTAINER(vbox2), 10);
       gtk_container_add(GTK_CONTAINER(frame), vbox2);
  
@@ -2532,7 +2532,7 @@ void GuiCreatePreferencesWindow(void)
       GuiRegisterPreferencesHelpWindow(lwoh);
 
       for(i=0; i<2; i++)
-      {  GtkWidget *hbox  = gtk_hbox_new(FALSE, 4);
+      {  GtkWidget *hbox  = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 4);
 
          button = gtk_color_button_new_with_rgba(Closure->greenSector);
          g_signal_connect(G_OBJECT(button), "color-set", G_CALLBACK(color_set_cb), Closure->greenSector);
@@ -2562,7 +2562,7 @@ void GuiCreatePreferencesWindow(void)
       GuiRegisterPreferencesHelpWindow(lwoh);
 
       for(i=0; i<2; i++)
-      {  GtkWidget *hbox  = gtk_hbox_new(FALSE, 4);
+      {  GtkWidget *hbox  = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 4);
 
          button = gtk_color_button_new_with_rgba(Closure->yellowSector);
          g_signal_connect(G_OBJECT(button), "color-set", G_CALLBACK(color_set_cb), Closure->yellowSector);
@@ -2592,7 +2592,7 @@ void GuiCreatePreferencesWindow(void)
       GuiRegisterPreferencesHelpWindow(lwoh);
 
       for(i=0; i<2; i++)
-      {  GtkWidget *hbox  = gtk_hbox_new(FALSE, 4);
+      {  GtkWidget *hbox  = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 4);
 
          button = gtk_color_button_new_with_rgba(Closure->redSector);
          g_signal_connect(G_OBJECT(button), "color-set", G_CALLBACK(color_set_cb), Closure->redSector);
@@ -2622,7 +2622,7 @@ void GuiCreatePreferencesWindow(void)
       GuiRegisterPreferencesHelpWindow(lwoh);
 
       for(i=0; i<2; i++)
-      {  GtkWidget *hbox  = gtk_hbox_new(FALSE, 4);
+      {  GtkWidget *hbox  = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 4);
 
          button = gtk_color_button_new_with_rgba(Closure->darkSector);
          g_signal_connect(G_OBJECT(button), "color-set", G_CALLBACK(color_set_cb), Closure->darkSector);
@@ -2652,7 +2652,7 @@ void GuiCreatePreferencesWindow(void)
       GuiRegisterPreferencesHelpWindow(lwoh);
 
       for(i=0; i<2; i++)
-      {  GtkWidget *hbox  = gtk_hbox_new(FALSE, 4);
+      {  GtkWidget *hbox  = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 4);
 
          button = gtk_color_button_new_with_rgba(Closure->blueSector);
          g_signal_connect(G_OBJECT(button), "color-set", G_CALLBACK(color_set_cb), Closure->blueSector);
@@ -2683,7 +2683,7 @@ void GuiCreatePreferencesWindow(void)
       GuiRegisterPreferencesHelpWindow(lwoh);
 
       for(i=0; i<2; i++)
-      {  GtkWidget *hbox  = gtk_hbox_new(FALSE, 4);
+      {  GtkWidget *hbox  = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 4);
 
          button = gtk_color_button_new_with_rgba(Closure->whiteSector);
          g_signal_connect(G_OBJECT(button), "color-set", G_CALLBACK(color_set_cb), Closure->whiteSector);
@@ -2714,7 +2714,7 @@ void GuiCreatePreferencesWindow(void)
       gtk_table_attach(GTK_TABLE(table), frame, 
 		       1, 2, 0, 1, GTK_EXPAND | GTK_FILL, GTK_SHRINK, 5, 5);
 
-      vbox2 = gtk_vbox_new(FALSE, 20);
+      vbox2 = gtk_box_new(GTK_ORIENTATION_VERTICAL, 20);
       gtk_container_set_border_width(GTK_CONTAINER(vbox2), 10);
       gtk_container_add(GTK_CONTAINER(frame), vbox2);
 
@@ -2724,7 +2724,7 @@ void GuiCreatePreferencesWindow(void)
       GuiRegisterPreferencesHelpWindow(lwoh);
 
       for(i=0; i<2; i++)
-      {  GtkWidget *hbox  = gtk_hbox_new(FALSE, 4);
+      {  GtkWidget *hbox  = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 4);
 
          button = gtk_color_button_new_with_rgba(Closure->greenText);
          g_signal_connect(G_OBJECT(button), "color-set", G_CALLBACK(color_set_cb), Closure->greenText);
@@ -2754,7 +2754,7 @@ void GuiCreatePreferencesWindow(void)
       GuiRegisterPreferencesHelpWindow(lwoh);
 
       for(i=0; i<2; i++)
-      {  GtkWidget *hbox  = gtk_hbox_new(FALSE, 4);
+      {  GtkWidget *hbox  = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 4);
 
          button = gtk_color_button_new_with_rgba(Closure->redText);
          g_signal_connect(G_OBJECT(button), "color-set", G_CALLBACK(color_set_cb), Closure->redText);
@@ -2783,7 +2783,7 @@ void GuiCreatePreferencesWindow(void)
       frame = gtk_frame_new(_utf("Curve colors"));
       gtk_table_attach(GTK_TABLE(table), frame, 
 		       1, 2, 1, 2, GTK_EXPAND | GTK_FILL, GTK_SHRINK, 5, 5);
-      vbox2 = gtk_vbox_new(FALSE, 20);
+      vbox2 = gtk_box_new(GTK_ORIENTATION_VERTICAL, 20);
       gtk_container_set_border_width(GTK_CONTAINER(vbox2), 10);
       gtk_container_add(GTK_CONTAINER(frame), vbox2);
 
@@ -2793,7 +2793,7 @@ void GuiCreatePreferencesWindow(void)
       GuiRegisterPreferencesHelpWindow(lwoh);
 
       for(i=0; i<2; i++)
-      {  GtkWidget *hbox  = gtk_hbox_new(FALSE, 4);
+      {  GtkWidget *hbox  = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 4);
 
          button = gtk_color_button_new_with_rgba(Closure->curveColor);
          g_signal_connect(G_OBJECT(button), "color-set", G_CALLBACK(color_set_cb), Closure->curveColor);
@@ -2824,7 +2824,7 @@ void GuiCreatePreferencesWindow(void)
       GuiRegisterPreferencesHelpWindow(lwoh);
 
       for(i=0; i<2; i++)
-      {  GtkWidget *hbox  = gtk_hbox_new(FALSE, 4);
+      {  GtkWidget *hbox  = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 4);
 
          button = gtk_color_button_new_with_rgba(Closure->logColor);
          g_signal_connect(G_OBJECT(button), "color-set", G_CALLBACK(color_set_cb), Closure->logColor);
@@ -2856,7 +2856,7 @@ void GuiCreatePreferencesWindow(void)
       GuiRegisterPreferencesHelpWindow(lwoh);
 
       for(i=0; i<2; i++)
-      {  GtkWidget *hbox  = gtk_hbox_new(FALSE, 4);
+      {  GtkWidget *hbox  = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 4);
 
          button = gtk_color_button_new_with_rgba(Closure->barColor);
          g_signal_connect(G_OBJECT(button), "color-set", G_CALLBACK(color_set_cb), Closure->barColor);
@@ -2905,7 +2905,7 @@ void GuiCreatePreferencesWindow(void)
       GuiRegisterPreferencesHelpWindow(lwoh);
 
       for(i=0; i<2; i++)
-      {  GtkWidget *hbox = gtk_hbox_new(FALSE, 0);
+      {  GtkWidget *hbox = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 0);
 	 GtkWidget *button = gtk_check_button_new();
 
 	 gtk_container_set_border_width(GTK_CONTAINER(hbox), 10);
@@ -2940,7 +2940,7 @@ void GuiCreatePreferencesWindow(void)
       frame = gtk_frame_new(_utf("Logging"));
       gtk_box_pack_start(GTK_BOX(vbox), frame, FALSE, FALSE, 0);
 
-      vbox2 = gtk_vbox_new(FALSE, 15);
+      vbox2 = gtk_box_new(GTK_ORIENTATION_VERTICAL, 15);
       gtk_container_set_border_width(GTK_CONTAINER(vbox2), 10);
       gtk_container_add(GTK_CONTAINER(frame), vbox2);
 
@@ -2949,7 +2949,7 @@ void GuiCreatePreferencesWindow(void)
       GuiRegisterPreferencesHelpWindow(lwoh);
 
       for(i=0; i<2; i++)
-      {  GtkWidget *hbox = gtk_hbox_new(FALSE, 0);
+      {  GtkWidget *hbox = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 0);
 	 GtkWidget *button = gtk_check_button_new();
 
 	 gtk_box_pack_start(GTK_BOX(hbox), button, FALSE, FALSE, 0);
@@ -2983,8 +2983,8 @@ void GuiCreatePreferencesWindow(void)
 
       for(i=0; i<2; i++)
       {  GtkWidget *table = gtk_table_new(4,2,FALSE);
-	 GtkWidget *hbox = gtk_hbox_new(FALSE, 0);
-	 GtkWidget *tinybox = gtk_hbox_new(FALSE, 0);
+	 GtkWidget *hbox = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 0);
+	 GtkWidget *tinybox = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 0);
 	 GtkWidget *label = gtk_label_new(Closure->logFile);
 	 GtkWidget *select = gtk_button_new_with_label(_utf("Select"));
 	 GtkWidget *delete = gtk_button_new_with_label(_utf("Delete"));
@@ -3000,7 +3000,7 @@ void GuiCreatePreferencesWindow(void)
 	 gtk_misc_set_alignment(GTK_MISC(lwoh->normalLabel), 0.0, 0.0);
 	 gtk_label_set_ellipsize(GTK_LABEL(label), PANGO_ELLIPSIZE_MIDDLE);
 
-	 hbox = gtk_hbox_new(FALSE, 0);
+	 hbox = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 0);
 	 gtk_box_pack_start(GTK_BOX(hbox), label, TRUE, TRUE, 0);
 	 gtk_table_attach(GTK_TABLE(table), hbox, 
 			  0, 2, 1, 2, GTK_EXPAND | GTK_FILL, GTK_SHRINK, 0, 0);
