@@ -395,7 +395,6 @@ typedef struct _GlobalClosure
    /*** Common stuff for drawing curves and spirals */
 
    gboolean  colors_initialized;
-   GdkRGBA   *background,*foreground,*grid;
    GdkRGBA   *redText;
    char      *redMarkup;
    GdkRGBA   *greenText;
@@ -437,6 +436,10 @@ typedef struct _GlobalClosure
 
 extern GlobalClosure *Closure;  /* these should be the only global variables! */
 extern int exitCode;            /* value to use on exit() */
+
+#ifdef WITH_GUI_YES
+   extern GdkRGBA transparent;
+#endif  /* WITH_GUI_YES */
 
 /***
  *** 
@@ -1540,7 +1543,7 @@ typedef struct _Spiral
 } Spiral;
 
 #ifdef WITH_GUI_YES
-Spiral* GuiCreateSpiral(GdkRGBA*, GdkRGBA*, int, int, int);
+Spiral* GuiCreateSpiral(GdkRGBA*, int, int, int);
 void GuiSetSpiralWidget(Spiral*, GtkWidget*);
 void GuiFreeSpiral(Spiral*);
 

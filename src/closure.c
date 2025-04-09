@@ -583,10 +583,6 @@ void InitClosure()
      g_mutex_init(Closure->logLock);
 
 #ifdef WITH_GUI_YES     
-   Closure->background = g_malloc0(sizeof(GdkRGBA));
-   Closure->foreground = g_malloc0(sizeof(GdkRGBA));
-   Closure->grid       = g_malloc0(sizeof(GdkRGBA));
-
    Closure->redText     = g_malloc0(sizeof(GdkRGBA));
    Closure->greenText   = g_malloc0(sizeof(GdkRGBA));
    Closure->barColor    = g_malloc0(sizeof(GdkRGBA));
@@ -607,6 +603,10 @@ void InitClosure()
 
    DefaultLogFile();
 }
+
+#ifdef WITH_GUI_YES
+   GdkRGBA transparent = {0};
+#endif  /* WITH_GUI_YES */
 
 /*
  * Add some localized file name defaults.
@@ -655,9 +655,6 @@ void FreeClosure()
    if(Closure->rawEditorContext)
       GuiFreeRawEditorContext(Closure->rawEditorContext);
 
-   cond_free(Closure->background);
-   cond_free(Closure->foreground);
-   cond_free(Closure->grid);
    cond_free(Closure->redText);
    cond_free(Closure->greenText);
    cond_free(Closure->barColor);
