@@ -182,7 +182,7 @@ static gboolean expose_cb(GtkWidget *widget, GdkEventExpose *event, gpointer dat
 }
 
 /*
- * Clip the spiral. Simply remove the clipping elements to avoid flicker.
+ * Clip the spiral.
  */
 
 static gboolean clip_idle_func(gpointer data)
@@ -190,22 +190,19 @@ static gboolean clip_idle_func(gpointer data)
    int i;
 
    if(spiral->segmentClipping < spiral->segmentCount)
-   {  GdkColor *outline = spiral->outline;
-      int clipping = spiral->segmentClipping;
+   {  int clipping = spiral->segmentClipping;
 
-      spiral->outline = Closure->background;
       spiral->segmentClipping = spiral->segmentCount;
    
       for(i=clipping; i < spiral->segmentCount; i++)
-	GuiDrawSpiralSegment(spiral, Closure->background, i);
+	GuiDrawSpiralSegment(spiral, Closure->background, Closure->background, i);
 
-      spiral->outline = outline;
       spiral->segmentClipping = clipping;
 
       /* Now redraw the last turn */
 
       for(i=ADAPTIVE_READ_SPIRAL_SIZE-300; i<=clipping; i++)
-	GuiDrawSpiralSegment(spiral, Closure->background, i);
+	GuiDrawSpiralSegment(spiral, Closure->background, 0, i);
    }   
 
    return FALSE;
@@ -245,8 +242,8 @@ static gboolean remove_fill_idle_func(gpointer data)
    int i;
 
    for(i=0; i<spiral->segmentCount; i++)
-     if(spiral->segmentColor[i] == Closure->whiteSector)
-       GuiDrawSpiralSegment(spiral, Closure->background, i);
+      if(spiral->segmentColor[i] == Closure->whiteSector)
+         GuiDrawSpiralSegment(spiral, Closure->background, 0, i);
 
    return FALSE;
 }

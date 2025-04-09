@@ -51,7 +51,7 @@ Spiral* GuiCreateSpiral(GdkColor *outline, GdkColor *fill,
    spiral->segmentCount = spiral->segmentClipping = n_segments;
    spiral->segmentPos   = g_malloc(n_segments * sizeof(double));
    spiral->segmentColor = g_malloc(n_segments * sizeof(GdkColor*));
-   spiral->outline      = outline;
+   spiral->segmentOutline = g_malloc(n_segments * sizeof(GdkColor*));
    spiral->cursorPos    = -1;
    spiral->lastRenderedCursorPos = -1;
 
@@ -59,6 +59,7 @@ Spiral* GuiCreateSpiral(GdkColor *outline, GdkColor *fill,
    { 
      spiral->segmentPos[i] = a; 
      spiral->segmentColor[i] = fill;
+     spiral->segmentOutline[i] = outline;
 
      ring_expand =  ((double)segment_size * a) / (2.0*M_PI);
      a += atan((double)segment_size / scale_o);
@@ -140,12 +141,14 @@ void GuiDrawSpiral(Spiral *spiral)
       points[2].x = xo1; points[2].y = yo1;
       points[3].x = xi1; points[3].y = yi1;
 
+      GdkColor *outline = spiral->segmentOutline[i] ? spiral->segmentOutline[i] : Closure->grid;
+
       if (i == spiral->cursorPos)
          gdk_gc_set_rgb_fg_color(Closure->drawGC, Closure->blueSector);
       else
          gdk_gc_set_rgb_fg_color(Closure->drawGC, spiral->segmentColor[i]);
       gdk_draw_polygon(d, Closure->drawGC, TRUE, points, 4);
-      gdk_gc_set_rgb_fg_color(Closure->drawGC, spiral->outline);
+      gdk_gc_set_rgb_fg_color(Closure->drawGC, outline);
       gdk_draw_polygon(d, Closure->drawGC, FALSE, points, 4);
 
       xi0 = xi1; yi0 = yi1;
@@ -157,10 +160,11 @@ void GuiDrawSpiral(Spiral *spiral)
  * Draw just one segment of the spiral
  */
 
-void GuiDrawSpiralSegment(Spiral *spiral, GdkColor *color, int segment)
+void GuiDrawSpiralSegment(Spiral *spiral, GdkColor *color, GdkColor *outline, int segment)
 {
    if (spiral->segmentColor[segment] != color)
    {  spiral->segmentColor[segment] = color;
+      spiral->segmentOutline[segment] = outline;
       gtk_widget_queue_draw(spiral->widget);
    }
 }
