@@ -91,7 +91,7 @@ static gboolean spiral_idle_func(gpointer data)
    int i;
 
    for(i=sii->from; i<=sii->to; i++)
-     GuiDrawSpiralSegment(sii->cmpSpiral, sii->segColor, i-1);
+     GuiDrawSpiralSegment(sii->cmpSpiral, sii->segColor, 0, i-1);
 
    g_free(sii);
    return FALSE;

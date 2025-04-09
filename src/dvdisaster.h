@@ -1529,7 +1529,7 @@ typedef struct _Spiral
    int segmentCount;
    double *segmentPos;
    GdkColor **segmentColor;
-   GdkColor *outline;
+   GdkColor **segmentOutline;
    int diameter;
    int segmentClipping;
    int cursorPos;
@@ -1543,7 +1543,7 @@ void GuiFreeSpiral(Spiral*);
 
 void GuiFillSpiral(Spiral*, GdkColor*);
 void GuiDrawSpiral(Spiral*);
-void GuiDrawSpiralSegment(Spiral*, GdkColor*, int);
+void GuiDrawSpiralSegment(Spiral*, GdkColor*, GdkColor*, int);
 void GuiDrawSpiralLabel(Spiral*, PangoLayout*, char*, GdkColor*, int, int);
 void GuiChangeSpiralCursor(Spiral*, int);
 void GuiMoveSpiralCursor(Spiral*, int);

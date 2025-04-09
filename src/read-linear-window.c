@@ -116,11 +116,11 @@ static gboolean curve_idle_func(gpointer data)
 
    for(i=rc->lastSegment; i<ci->percent; i++)
      switch(Closure->readLinearCurve->ivalue[i])
-     {  case 0: GuiDrawSpiralSegment(Closure->readLinearSpiral, Closure->blueSector, i); break;
-        case 1: GuiDrawSpiralSegment(Closure->readLinearSpiral, Closure->greenSector, i); break;
-        case 2: GuiDrawSpiralSegment(Closure->readLinearSpiral, Closure->redSector, i); break;
-        case 3: GuiDrawSpiralSegment(Closure->readLinearSpiral, Closure->darkSector, i); break;
-        case 4: GuiDrawSpiralSegment(Closure->readLinearSpiral, Closure->yellowSector, i); break;
+     {  case 0: GuiDrawSpiralSegment(Closure->readLinearSpiral, Closure->blueSector, 0, i); break;
+        case 1: GuiDrawSpiralSegment(Closure->readLinearSpiral, Closure->greenSector, 0, i); break;
+        case 2: GuiDrawSpiralSegment(Closure->readLinearSpiral, Closure->redSector, 0, i); break;
+        case 3: GuiDrawSpiralSegment(Closure->readLinearSpiral, Closure->darkSector, 0, i); break;
+        case 4: GuiDrawSpiralSegment(Closure->readLinearSpiral, Closure->yellowSector, 0, i); break;
      }
 
    rc->lastSegment = ci->percent;
