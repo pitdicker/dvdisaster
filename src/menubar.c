@@ -338,15 +338,15 @@ static void file_select_cb(GtkWidget *widget, gpointer data)
             dialog = gtk_file_chooser_dialog_new("Image file selection",
                                                  Closure->window,
                                                  GTK_FILE_CHOOSER_ACTION_SAVE,
-                                                 GTK_STOCK_CANCEL, GTK_RESPONSE_CANCEL,
-                                                 GTK_STOCK_OPEN, GTK_RESPONSE_ACCEPT,
+                                                 _("_Cancel"), GTK_RESPONSE_CANCEL,
+                                                 _("_Open"), GTK_RESPONSE_ACCEPT,
                                                  NULL);
          else
             dialog = gtk_file_chooser_dialog_new("Image file selection",
                                                  Closure->window,
                                                  GTK_FILE_CHOOSER_ACTION_SAVE,
-                                                 GTK_STOCK_OPEN, GTK_RESPONSE_ACCEPT,
-                                                 GTK_STOCK_CANCEL, GTK_RESPONSE_CANCEL,
+                                                 _("_Open"), GTK_RESPONSE_ACCEPT,
+                                                 _("_Cancel"), GTK_RESPONSE_CANCEL,
                                                  NULL);
          gtk_file_chooser_set_filename(GTK_FILE_CHOOSER(dialog),
                                        gtk_entry_get_text(GTK_ENTRY(Closure->imageEntry)));
@@ -368,15 +368,15 @@ static void file_select_cb(GtkWidget *widget, gpointer data)
             dialog = gtk_file_chooser_dialog_new("Error correction file selection",
                                                  Closure->window,
                                                  GTK_FILE_CHOOSER_ACTION_SAVE,
-                                                 GTK_STOCK_CANCEL, GTK_RESPONSE_CANCEL,
-                                                 GTK_STOCK_OPEN, GTK_RESPONSE_ACCEPT,
+                                                 _("_Cancel"), GTK_RESPONSE_CANCEL,
+                                                 _("_Open"), GTK_RESPONSE_ACCEPT,
                                                  NULL);
          else
             dialog = gtk_file_chooser_dialog_new("Error correction file selection",
                                                  Closure->window,
                                                  GTK_FILE_CHOOSER_ACTION_SAVE,
-                                                 GTK_STOCK_OPEN, GTK_RESPONSE_ACCEPT,
-                                                 GTK_STOCK_CANCEL, GTK_RESPONSE_CANCEL,
+                                                 _("_Open"), GTK_RESPONSE_ACCEPT,
+                                                 _("_Cancel"), GTK_RESPONSE_CANCEL,
                                                  NULL);
          gtk_file_chooser_set_filename(GTK_FILE_CHOOSER(dialog),
                                        gtk_entry_get_text(GTK_ENTRY(Closure->imageEntry)));

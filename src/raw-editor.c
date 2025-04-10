@@ -297,15 +297,15 @@ static void file_select_cb(GtkWidget *widget, gpointer data)
          dialog = gtk_file_chooser_dialog_new("Raw sector dump selection",
                                               Closure->window,
                                               GTK_FILE_CHOOSER_ACTION_OPEN,
-                                              GTK_STOCK_CANCEL, GTK_RESPONSE_CANCEL,
-                                              GTK_STOCK_OPEN, GTK_RESPONSE_ACCEPT,
+                                              _("_Cancel"), GTK_RESPONSE_CANCEL,
+                                              _("_Open"), GTK_RESPONSE_ACCEPT,
                                               NULL);
       else
          dialog = gtk_file_chooser_dialog_new("Raw sector dump selection",
                                               Closure->window,
                                               GTK_FILE_CHOOSER_ACTION_OPEN,
-                                              GTK_STOCK_OPEN, GTK_RESPONSE_ACCEPT,
-                                              GTK_STOCK_CANCEL, GTK_RESPONSE_CANCEL,
+                                              _("_Open"), GTK_RESPONSE_ACCEPT,
+                                              _("_Cancel"), GTK_RESPONSE_CANCEL,
                                               NULL);
       sprintf(filename, "%s/", Closure->dDumpDir);
       gtk_file_chooser_set_filename(GTK_FILE_CHOOSER(dialog), filename);
@@ -416,15 +416,15 @@ static void buffer_io_cb(GtkWidget *widget, gpointer data)
                dialog = gtk_file_chooser_dialog_new("Load buffer from file",
                                                     Closure->window,
                                                     GTK_FILE_CHOOSER_ACTION_OPEN,
-                                                    GTK_STOCK_CANCEL, GTK_RESPONSE_CANCEL,
-                                                    GTK_STOCK_OPEN, GTK_RESPONSE_ACCEPT,
+                                                    _("_Cancel"), GTK_RESPONSE_CANCEL,
+                                                    _("_Open"), GTK_RESPONSE_ACCEPT,
                                                     NULL);
             else
                dialog = gtk_file_chooser_dialog_new("Load buffer from file",
                                                     Closure->window,
                                                     GTK_FILE_CHOOSER_ACTION_OPEN,
-                                                    GTK_STOCK_OPEN, GTK_RESPONSE_ACCEPT,
-                                                    GTK_STOCK_CANCEL, GTK_RESPONSE_CANCEL,
+                                                    _("_Open"), GTK_RESPONSE_ACCEPT,
+                                                    _("_Cancel"), GTK_RESPONSE_CANCEL,
                                                     NULL);
             sprintf(filename, "%s/", Closure->dDumpDir);
             gtk_file_chooser_set_filename(GTK_FILE_CHOOSER(dialog), filename);
@@ -454,15 +454,15 @@ static void buffer_io_cb(GtkWidget *widget, gpointer data)
                dialog = gtk_file_chooser_dialog_new("Save buffer to file",
                                                     Closure->window,
                                                     GTK_FILE_CHOOSER_ACTION_SAVE,
-                                                    GTK_STOCK_CANCEL, GTK_RESPONSE_CANCEL,
-                                                    GTK_STOCK_OPEN, GTK_RESPONSE_ACCEPT,
+                                                    _("_Cancel"), GTK_RESPONSE_CANCEL,
+                                                    _("_Open"), GTK_RESPONSE_ACCEPT,
                                                     NULL);
             else
                dialog = gtk_file_chooser_dialog_new("Save buffer to file",
                                                     Closure->window,
                                                     GTK_FILE_CHOOSER_ACTION_SAVE,
-                                                    GTK_STOCK_OPEN, GTK_RESPONSE_ACCEPT,
-                                                    GTK_STOCK_CANCEL, GTK_RESPONSE_CANCEL,
+                                                    _("_Open"), GTK_RESPONSE_ACCEPT,
+                                                    _("_Cancel"), GTK_RESPONSE_CANCEL,
                                                     NULL);
             sprintf(filename, "%s/", Closure->dDumpDir);
             gtk_file_chooser_set_filename(GTK_FILE_CHOOSER(dialog), filename);

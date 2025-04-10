@@ -147,7 +147,7 @@ LabelWithOnlineHelp* GuiCreateLabelWithOnlineHelp(char *title, char *ascii_text)
    hbox = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 0);
    gtk_box_pack_end(GTK_BOX(vbox), hbox, FALSE, FALSE, 0);
 
-   button = gtk_button_new_from_stock(GTK_STOCK_CLOSE);
+   button = gtk_button_new_with_label(_("_Close"));
    gtk_box_pack_end(GTK_BOX(hbox), button, FALSE, FALSE, 0);
    g_signal_connect(G_OBJECT(button), "clicked", G_CALLBACK(close_cb), lwoh);
 
@@ -547,7 +547,7 @@ GtkWidget* GuiShowTextfile(char *title, char *explanation, char *file,
 
    utf = g_locale_to_utf8(title, -1, NULL, NULL, NULL);
    dialog = gtk_dialog_new_with_buttons(utf, Closure->window, GTK_DIALOG_DESTROY_WITH_PARENT,
-				       GTK_STOCK_CLOSE, GTK_RESPONSE_ACCEPT, NULL);
+				       _("Close"), GTK_RESPONSE_ACCEPT, NULL);
    g_free(utf);
    gtk_window_set_default_size(GTK_WINDOW(dialog), 500, 600);
    g_signal_connect_swapped(dialog, "response", G_CALLBACK(gtk_widget_destroy), dialog);
@@ -730,7 +730,7 @@ void GuiAboutDialog()
 
    about = gtk_dialog_new_with_buttons(_utf("windowtitle|About dvdisaster"), 
 				       Closure->window, GTK_DIALOG_DESTROY_WITH_PARENT,
-				       GTK_STOCK_CLOSE, GTK_RESPONSE_ACCEPT, NULL);
+				       _("Close"), GTK_RESPONSE_ACCEPT, NULL);
 
    g_signal_connect_swapped(about, "response", G_CALLBACK(gtk_widget_destroy), about);
 

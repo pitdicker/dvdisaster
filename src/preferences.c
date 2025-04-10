@@ -1022,15 +1022,15 @@ static void cache_defective_dir_cb(GtkWidget *widget, gpointer data)
          dialog = gtk_file_chooser_dialog_new("Raw sector caching",
                                               Closure->window,
                                               GTK_FILE_CHOOSER_ACTION_SELECT_FOLDER,
-                                              GTK_STOCK_CANCEL, GTK_RESPONSE_CANCEL,
-                                              GTK_STOCK_OPEN, GTK_RESPONSE_ACCEPT,
+                                              _("_Cancel"), GTK_RESPONSE_CANCEL,
+                                              _("_Open"), GTK_RESPONSE_ACCEPT,
                                               NULL);
       else
          dialog = gtk_file_chooser_dialog_new("Raw sector caching",
                                               Closure->window,
                                               GTK_FILE_CHOOSER_ACTION_SELECT_FOLDER,
-                                              GTK_STOCK_OPEN, GTK_RESPONSE_ACCEPT,
-                                              GTK_STOCK_CANCEL, GTK_RESPONSE_CANCEL,
+                                              _("_Open"), GTK_RESPONSE_ACCEPT,
+                                              _("_Cancel"), GTK_RESPONSE_CANCEL,
                                               NULL);
       sprintf(filename, "%s/", Closure->dDumpDir);
       gtk_file_chooser_set_filename(GTK_FILE_CHOOSER(dialog), filename);
@@ -1062,15 +1062,15 @@ static void logfile_select_cb(GtkWidget *widget, gpointer data)
          dialog = gtk_file_chooser_dialog_new("Log file",
                                               Closure->window,
                                               GTK_FILE_CHOOSER_ACTION_SAVE,
-                                              GTK_STOCK_CANCEL, GTK_RESPONSE_CANCEL,
-                                              GTK_STOCK_OPEN, GTK_RESPONSE_ACCEPT,
+                                              _("_Cancel"), GTK_RESPONSE_CANCEL,
+                                              _("_Open"), GTK_RESPONSE_ACCEPT,
                                               NULL);
       else
          dialog = gtk_file_chooser_dialog_new("Log file",
                                               Closure->window,
                                               GTK_FILE_CHOOSER_ACTION_SAVE,
-                                              GTK_STOCK_OPEN, GTK_RESPONSE_ACCEPT,
-                                              GTK_STOCK_CANCEL, GTK_RESPONSE_CANCEL,
+                                              _("_Open"), GTK_RESPONSE_ACCEPT,
+                                              _("_Cancel"), GTK_RESPONSE_CANCEL,
                                               NULL);
       gtk_file_chooser_set_filename(GTK_FILE_CHOOSER(dialog), Closure->logFile);
 
@@ -1207,7 +1207,7 @@ void GuiCreatePreferencesWindow(void)
       hbox = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 0);
       gtk_box_pack_start(GTK_BOX(outer_box), hbox, FALSE, FALSE, 0);
 
-      button = gtk_button_new_from_stock(GTK_STOCK_CLOSE);
+      button = gtk_button_new_with_label(_("Close"));
       gtk_box_pack_end(GTK_BOX(hbox), button, FALSE, FALSE, 0);
       g_signal_connect(G_OBJECT(button), "clicked", G_CALLBACK(close_cb), NULL);
 
