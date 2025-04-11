@@ -81,7 +81,7 @@ static void redraw_labels(cairo_t *cr, GtkWidget *widget, int erase_mask)
       while(*c && *c != ' ')  /* find point to split text in middle */
         c++;
 
-      if(c)                   /* split text into two lines */
+      if(*c)                  /* split text into two lines */
       {  *c = 0;
 	 h = draw_text(cr, Closure->readLinearCurve->layout,
 		       Closure->readAdaptiveSubtitle, x, y, Closure->foreground, 
