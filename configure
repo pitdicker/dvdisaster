@@ -232,9 +232,6 @@ done
 echo
 echo -e "\nCFG_CFILES = $cfiles" >> Makefile.config
 echo "CFG_OFILES = $ofiles" >> Makefile.config
-if test "$cfg_with_gui" == "yes"; then
-  echo "ICONS = src/inlined-icons.h" >> Makefile.config
-fi
 
 # Create the method wrapper
 

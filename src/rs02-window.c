@@ -832,7 +832,7 @@ void CreateRS02PrefsPage(Method *method, GtkWidget *parent)
    g_signal_connect(G_OBJECT(wl->cdButtonA), "clicked", G_CALLBACK(query_cb), wl);
    gtk_grid_attach(GTK_GRID(grid), wl->cdButtonA, 3, 2, 1, 1);
 
-   icon = gtk_image_new_from_stock(GTK_STOCK_UNDO, GTK_ICON_SIZE_SMALL_TOOLBAR);
+   icon = gtk_image_new_from_icon_name("edit-undo", GTK_ICON_SIZE_SMALL_TOOLBAR);
    wl->cdUndoButtonA = gtk_button_new();
    gtk_container_add(GTK_CONTAINER(wl->cdUndoButtonA), icon);
    g_signal_connect(G_OBJECT(wl->cdUndoButtonA), "clicked", G_CALLBACK(query_cb), wl);
@@ -851,7 +851,7 @@ void CreateRS02PrefsPage(Method *method, GtkWidget *parent)
    g_signal_connect(G_OBJECT(wl->cdButtonB), "clicked", G_CALLBACK(query_cb), wl);
    gtk_box_pack_start(GTK_BOX(hbox), wl->cdButtonB, FALSE, FALSE, 0);
 
-   icon = gtk_image_new_from_stock(GTK_STOCK_UNDO, GTK_ICON_SIZE_SMALL_TOOLBAR);
+   icon = gtk_image_new_from_icon_name("edit-undo", GTK_ICON_SIZE_SMALL_TOOLBAR);
    wl->cdUndoButtonB = gtk_button_new();
    gtk_container_add(GTK_CONTAINER(wl->cdUndoButtonB), icon);
    g_signal_connect(G_OBJECT(wl->cdUndoButtonB), "clicked", G_CALLBACK(query_cb), wl);
@@ -895,7 +895,7 @@ void CreateRS02PrefsPage(Method *method, GtkWidget *parent)
      g_signal_connect(G_OBJECT(wl->dvdButton1A), "clicked", G_CALLBACK(query_cb), wl);
      gtk_grid_attach(GTK_GRID(grid), wl->dvdButton1A, 3, 3, 1, 1);
 
-     icon = gtk_image_new_from_stock(GTK_STOCK_UNDO, GTK_ICON_SIZE_SMALL_TOOLBAR);
+     icon = gtk_image_new_from_icon_name("edit-undo", GTK_ICON_SIZE_SMALL_TOOLBAR);
      wl->dvdUndoButton1A = gtk_button_new();
      gtk_container_add(GTK_CONTAINER(wl->dvdUndoButton1A), icon);
      g_signal_connect(G_OBJECT(wl->dvdUndoButton1A), "clicked", G_CALLBACK(query_cb), wl);
@@ -914,7 +914,7 @@ void CreateRS02PrefsPage(Method *method, GtkWidget *parent)
    g_signal_connect(G_OBJECT(wl->dvdButton1B), "clicked", G_CALLBACK(query_cb), wl);
    gtk_box_pack_start(GTK_BOX(hbox), wl->dvdButton1B, FALSE, FALSE, 0);
 
-   icon = gtk_image_new_from_stock(GTK_STOCK_UNDO, GTK_ICON_SIZE_SMALL_TOOLBAR);
+   icon = gtk_image_new_from_icon_name("edit-undo", GTK_ICON_SIZE_SMALL_TOOLBAR);
    wl->dvdUndoButton1B = gtk_button_new();
    gtk_container_add(GTK_CONTAINER(wl->dvdUndoButton1B), icon);
    g_signal_connect(G_OBJECT(wl->dvdUndoButton1B), "clicked", G_CALLBACK(query_cb), wl);
@@ -958,7 +958,7 @@ void CreateRS02PrefsPage(Method *method, GtkWidget *parent)
      g_signal_connect(G_OBJECT(wl->dvdButton2A), "clicked", G_CALLBACK(query_cb), wl);
      gtk_grid_attach(GTK_GRID(grid), wl->dvdButton2A, 3, 4, 1, 1);
 
-     icon = gtk_image_new_from_stock(GTK_STOCK_UNDO, GTK_ICON_SIZE_SMALL_TOOLBAR);
+     icon = gtk_image_new_from_icon_name("edit-undo", GTK_ICON_SIZE_SMALL_TOOLBAR);
      wl->dvdUndoButton2A = gtk_button_new();
      gtk_container_add(GTK_CONTAINER(wl->dvdUndoButton2A), icon);
      g_signal_connect(G_OBJECT(wl->dvdUndoButton2A), "clicked", G_CALLBACK(query_cb), wl);
@@ -977,7 +977,7 @@ void CreateRS02PrefsPage(Method *method, GtkWidget *parent)
    g_signal_connect(G_OBJECT(wl->dvdButton2B), "clicked", G_CALLBACK(query_cb), wl);
    gtk_box_pack_start(GTK_BOX(hbox), wl->dvdButton2B, FALSE, FALSE, 0);
 
-   icon = gtk_image_new_from_stock(GTK_STOCK_UNDO, GTK_ICON_SIZE_SMALL_TOOLBAR);
+   icon = gtk_image_new_from_icon_name("edit-undo", GTK_ICON_SIZE_SMALL_TOOLBAR);
    wl->dvdUndoButton2B = gtk_button_new();
    gtk_container_add(GTK_CONTAINER(wl->dvdUndoButton2B), icon);
    g_signal_connect(G_OBJECT(wl->dvdUndoButton2B), "clicked", G_CALLBACK(query_cb), wl);
@@ -1021,7 +1021,7 @@ void CreateRS02PrefsPage(Method *method, GtkWidget *parent)
      g_signal_connect(G_OBJECT(wl->bdButton1A), "clicked", G_CALLBACK(query_cb), wl);
      gtk_grid_attach(GTK_GRID(grid), wl->bdButton1A, 3, 5, 1, 1);
 
-     icon = gtk_image_new_from_stock(GTK_STOCK_UNDO, GTK_ICON_SIZE_SMALL_TOOLBAR);
+     icon = gtk_image_new_from_icon_name("edit-undo", GTK_ICON_SIZE_SMALL_TOOLBAR);
      wl->bdUndoButton1A = gtk_button_new();
      gtk_container_add(GTK_CONTAINER(wl->bdUndoButton1A), icon);
      g_signal_connect(G_OBJECT(wl->bdUndoButton1A), "clicked", G_CALLBACK(query_cb), wl);
@@ -1040,7 +1040,7 @@ void CreateRS02PrefsPage(Method *method, GtkWidget *parent)
    g_signal_connect(G_OBJECT(wl->bdButton1B), "clicked", G_CALLBACK(query_cb), wl);
    gtk_box_pack_start(GTK_BOX(hbox), wl->bdButton1B, FALSE, FALSE, 0);
 
-   icon = gtk_image_new_from_stock(GTK_STOCK_UNDO, GTK_ICON_SIZE_SMALL_TOOLBAR);
+   icon = gtk_image_new_from_icon_name("edit-undo", GTK_ICON_SIZE_SMALL_TOOLBAR);
    wl->bdUndoButton1B = gtk_button_new();
    gtk_container_add(GTK_CONTAINER(wl->bdUndoButton1B), icon);
    g_signal_connect(G_OBJECT(wl->bdUndoButton1B), "clicked", G_CALLBACK(query_cb), wl);
@@ -1083,7 +1083,7 @@ void CreateRS02PrefsPage(Method *method, GtkWidget *parent)
      g_signal_connect(G_OBJECT(wl->bdButton2A), "clicked", G_CALLBACK(query_cb), wl);
      gtk_grid_attach(GTK_GRID(grid), wl->bdButton2A, 3, 6, 1, 1);
 
-     icon = gtk_image_new_from_stock(GTK_STOCK_UNDO, GTK_ICON_SIZE_SMALL_TOOLBAR);
+     icon = gtk_image_new_from_icon_name("edit-undo", GTK_ICON_SIZE_SMALL_TOOLBAR);
      wl->bdUndoButton2A = gtk_button_new();
      gtk_container_add(GTK_CONTAINER(wl->bdUndoButton2A), icon);
      g_signal_connect(G_OBJECT(wl->bdUndoButton2A), "clicked", G_CALLBACK(query_cb), wl);
@@ -1102,7 +1102,7 @@ void CreateRS02PrefsPage(Method *method, GtkWidget *parent)
    g_signal_connect(G_OBJECT(wl->bdButton2B), "clicked", G_CALLBACK(query_cb), wl);
    gtk_box_pack_start(GTK_BOX(hbox), wl->bdButton2B, FALSE, FALSE, 0);
 
-   icon = gtk_image_new_from_stock(GTK_STOCK_UNDO, GTK_ICON_SIZE_SMALL_TOOLBAR);
+   icon = gtk_image_new_from_icon_name("edit-undo", GTK_ICON_SIZE_SMALL_TOOLBAR);
    wl->bdUndoButton2B = gtk_button_new();
    gtk_container_add(GTK_CONTAINER(wl->bdUndoButton2B), icon);
    g_signal_connect(G_OBJECT(wl->bdUndoButton2B), "clicked", G_CALLBACK(query_cb), wl);
@@ -1145,7 +1145,7 @@ void CreateRS02PrefsPage(Method *method, GtkWidget *parent)
      g_signal_connect(G_OBJECT(wl->bdButton3A), "clicked", G_CALLBACK(query_cb), wl);
      gtk_grid_attach(GTK_GRID(grid), wl->bdButton3A, 3, 7, 1, 1);
 
-     icon = gtk_image_new_from_stock(GTK_STOCK_UNDO, GTK_ICON_SIZE_SMALL_TOOLBAR);
+     icon = gtk_image_new_from_icon_name("edit-undo", GTK_ICON_SIZE_SMALL_TOOLBAR);
      wl->bdUndoButton3A = gtk_button_new();
      gtk_container_add(GTK_CONTAINER(wl->bdUndoButton3A), icon);
      g_signal_connect(G_OBJECT(wl->bdUndoButton3A), "clicked", G_CALLBACK(query_cb), wl);
@@ -1164,7 +1164,7 @@ void CreateRS02PrefsPage(Method *method, GtkWidget *parent)
    g_signal_connect(G_OBJECT(wl->bdButton3B), "clicked", G_CALLBACK(query_cb), wl);
    gtk_box_pack_start(GTK_BOX(hbox), wl->bdButton3B, FALSE, FALSE, 0);
 
-   icon = gtk_image_new_from_stock(GTK_STOCK_UNDO, GTK_ICON_SIZE_SMALL_TOOLBAR);
+   icon = gtk_image_new_from_icon_name("edit-undo", GTK_ICON_SIZE_SMALL_TOOLBAR);
    wl->bdUndoButton3B = gtk_button_new();
    gtk_container_add(GTK_CONTAINER(wl->bdUndoButton3B), icon);
    g_signal_connect(G_OBJECT(wl->bdUndoButton3B), "clicked", G_CALLBACK(query_cb), wl);
@@ -1209,7 +1209,7 @@ void CreateRS02PrefsPage(Method *method, GtkWidget *parent)
      g_signal_connect(G_OBJECT(wl->bdButton4A), "clicked", G_CALLBACK(query_cb), wl);
      gtk_grid_attach(GTK_GRID(grid), wl->bdButton4A, 3, 8, 1, 1);
 
-     icon = gtk_image_new_from_stock(GTK_STOCK_UNDO, GTK_ICON_SIZE_SMALL_TOOLBAR);
+     icon = gtk_image_new_from_icon_name("edit-undo", GTK_ICON_SIZE_SMALL_TOOLBAR);
      wl->bdUndoButton4A = gtk_button_new();
      gtk_container_add(GTK_CONTAINER(wl->bdUndoButton4A), icon);
      g_signal_connect(G_OBJECT(wl->bdUndoButton4A), "clicked", G_CALLBACK(query_cb), wl);
@@ -1228,7 +1228,7 @@ void CreateRS02PrefsPage(Method *method, GtkWidget *parent)
    g_signal_connect(G_OBJECT(wl->bdButton4B), "clicked", G_CALLBACK(query_cb), wl);
    gtk_box_pack_start(GTK_BOX(hbox), wl->bdButton4B, FALSE, FALSE, 0);
 
-   icon = gtk_image_new_from_stock(GTK_STOCK_UNDO, GTK_ICON_SIZE_SMALL_TOOLBAR);
+   icon = gtk_image_new_from_icon_name("edit-undo", GTK_ICON_SIZE_SMALL_TOOLBAR);
    wl->bdUndoButton4B = gtk_button_new();
    gtk_container_add(GTK_CONTAINER(wl->bdUndoButton4B), icon);
    g_signal_connect(G_OBJECT(wl->bdUndoButton4B), "clicked", G_CALLBACK(query_cb), wl);
